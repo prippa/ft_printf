@@ -10,11 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	main(void)
 {
-	ft_putnbr(ft_printf(""));
+	printf("%%Hello World\n");
+	ft_printf("%%Hello World\n");
+	printf("%BSDIFG\n", "hi");
+	ft_printf("%%%%%%%c\n", '$');
+	ft_printf("%%%cPigs :%d<->%s = %d\n", '$', 13, "AHHHHH", -42);
 	return (0);
 }

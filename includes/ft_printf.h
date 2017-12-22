@@ -14,7 +14,8 @@
 # define FT_PRINTF_H
 
 # include "libft.h"
+# include <stdarg.h>
 
-int	ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
 
 #endif

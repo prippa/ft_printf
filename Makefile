@@ -12,7 +12,9 @@
 
 NAME		=	libftprintf.a
 
-CC			=	gcc -Wall -Werror -Wextra
+FLAGS		= 	-Wall -Werror -Wextra
+
+CC			=	gcc
 
 DIR_INC		=	./includes/
 DIR_LIBC	=	./libc/
@@ -40,7 +42,8 @@ C_LIBC		= 	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c\
 			ft_strtrim.c ft_tolower.c ft_tostrlowercase.c ft_tostruppercase.c\
 			ft_toupper.c get_next_line.c
 
-C_FPF		=	ft_printf.c main.c
+C_FPF		= 	main.c ft_printf.c
+
 
 
 OBJ_LIBC 	= 	$(C_LIBC:.c=.o)
@@ -60,7 +63,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@gcc $(OBJ) -lm #<- !!!
+	@gcc $(OBJ) -lm
 	@echo "Compiling" [ $(NAME) ]
 
 $(DIR_OBJ)%.o: $(DIR_LIBC)%.c $(INC_LIBC)

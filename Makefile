@@ -42,7 +42,7 @@ C_LIBC		= 	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c\
 			ft_strtrim.c ft_tolower.c ft_tostrlowercase.c ft_tostruppercase.c\
 			ft_toupper.c get_next_line.c
 
-C_FPF		= 	main.c ft_printf.c
+C_FPF		= 	main.c ft_printf.c ft_itoa_base.c
 
 
 

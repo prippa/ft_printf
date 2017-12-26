@@ -17,5 +17,6 @@
 # include <stdarg.h>
 
 int		ft_printf(const char *format, ...);
+char	*ft_itoa_base(unsigned long long int n, int base, int flag, int len);
 
 #endif

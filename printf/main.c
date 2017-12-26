@@ -18,7 +18,7 @@ int	main(void)
 	unsigned x;
 
 	x = 0xABCD;
-	printf("%s\n", ft_itoa_base(-42, 16, 55, 8));
-	printf("%X\n", -42);
+	printf("%s\n", ft_itoa_base(-2147483648123, 16, 55, 0));
+	printf("%lX\n", -2147483648123);
 	return (0);
 }

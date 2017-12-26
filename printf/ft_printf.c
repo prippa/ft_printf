@@ -14,7 +14,7 @@
 
 static int	ft_dispatcher(char c, va_list *args)
 {
-	if (c != '%' && c != 'c' && c != 's' && c != 'd')
+	if (c != '%' && c != 'c' && c != 's' && c != 'd' && c != 'i')
 		return (1);
 	if (c == '%')
 		ft_putchar('%');
@@ -22,7 +22,7 @@ static int	ft_dispatcher(char c, va_list *args)
 		ft_putchar(va_arg(*args, int));
 	if (c == 's')
 		ft_putstr(va_arg(*args, char *));
-	if (c == 'd')
+	if (c == 'd' || c == 'i')
 		ft_putnbr(va_arg(*args, int));
 	return (2);
 }

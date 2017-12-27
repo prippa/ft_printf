@@ -16,6 +16,14 @@
 # include "libft.h"
 # include <stdarg.h>
 
+typedef	struct		s_printf
+{
+	char			*format;
+	int				i;
+	size_t			size;
+	va_list			args;
+}					t_printf;
+
 int		ft_printf(const char *format, ...);
 char	*ft_itoa_base(unsigned long long int n, int base, int flag, int len);
 

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*ft_itoa_base(unsigned long long int num, int base, int flag, int len)
+char	*ft_itoa_base(unsigned long long int num, int base, int letter, int len)
 {
 	int						i;
 	unsigned long long int	tmp;
@@ -32,7 +32,7 @@ char	*ft_itoa_base(unsigned long long int num, int base, int flag, int len)
 		tmp = tmp / base;
 		i--;
 		if (base > 10 && op > 9)
-			buf[i] = op + flag;
+			buf[i] = op + letter;
 		else
 			buf[i] = op + 48;
 	}

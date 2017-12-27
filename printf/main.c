@@ -15,10 +15,7 @@
 
 int	main(void)
 {
-	unsigned x;
-
-	x = 0xABCD;
-	printf("%s\n", ft_itoa_base(-2147483648123, 16, 55, 0));
-	printf("%lX\n", -2147483648123);
+	printf("%d\n", ft_printf("%s: (!)\n", "Piglads"));
+	printf("%d\n", printf("%s: (!)\n", "Piglads"));
 	return (0);
 }

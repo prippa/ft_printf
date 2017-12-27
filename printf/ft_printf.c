@@ -12,46 +12,61 @@
 
 #include "ft_printf.h"
 
-static int	ft_dispatcher(char c, va_list *args)
+static void	ft_dispatcher(t_printf **fpf, char c)
 {
+	char *tmp;
+
 	if (c != '%' && c != 'c' && c != 's' && c != 'd' && c != 'i')
-		return (1);
-	if (c == '%')
-		ft_putchar('%');
-	if (c == 'c')
-		ft_putchar(va_arg(*args, int));
-	if (c == 's')
-		ft_putstr(va_arg(*args, char *));
-	if (c == 'd' || c == 'i')
-		ft_putnbr(va_arg(*args, int));
-	return (2);
+		(*fpf)->i += 1;
+	else
+	{
+		if (c == '%')
+		{
+			(*fpf)->size++;
+			ft_putchar('%');
+		}
+		if (c == 'c')
+		{
+			(*fpf)->size++;
+			ft_putchar(va_arg((*fpf)->args, int));
+		}
+		if (c == 's')
+		{
+			tmp = va_arg((*fpf)->args, char *);
+			(*fpf)->size += ft_strlen(tmp);
+			ft_putstr(tmp);
+		}
+		if (c == 'd' || c == 'i')
+			ft_putnbr(va_arg((*fpf)->args, int));
+		(*fpf)->i += 2;
+	}
 }
 
-static int	ft_lobi(const char *format, va_list *args)
+static void	ft_lobi(t_printf **fpf)
 {
-	int i;
-
-	i = 0;
-	while (format[i])
+	while ((*fpf)->format[(*fpf)->i])
 	{
-		if (format[i] == '%' && format[i + 1])
-			i += ft_dispatcher(format[i + 1], &(*args));
+		if ((*fpf)->format[(*fpf)->i] == '%' && (*fpf)->format[(*fpf)->i + 1])
+			ft_dispatcher(&(*fpf), (*fpf)->format[(*fpf)->i + 1]);
 		else
 		{
-			ft_putchar(format[i]);
-			i++;
+			ft_putchar((*fpf)->format[(*fpf)->i]);
+			(*fpf)->size += 1;
+			(*fpf)->i++;
 		}
 	}
-	return (i);
 }
 
 int			ft_printf(const char *format, ...)
 {
-	va_list	args;
-	int		len;
+	t_printf *fpf;
 
-	va_start(args, format);
-	len = ft_lobi(format, &args);
-	va_end(args);
-	return (len);
+	fpf = (t_printf*)malloc(sizeof(t_printf));
+	fpf->format = ft_strdup(format);
+	fpf->size = 0;
+	fpf->i = 0;
+	va_start(fpf->args, format);
+	ft_lobi(&fpf);
+	va_end(fpf->args);
+	return (fpf->size);
 }

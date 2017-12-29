@@ -15,6 +15,8 @@
 
 # include "libft.h"
 # include <stdarg.h>
+//# include <inttypes.h>
+//# include <wchar.h>
 
 typedef	struct		s_printf
 {
@@ -25,6 +27,12 @@ typedef	struct		s_printf
 }					t_printf;
 
 int		ft_printf(const char *format, ...);
-char	*ft_itoa_base(unsigned long long int n, int base, int flag, int len);
+char	*ft_itoa_lli(long long int num);
+char	*ft_itoa_base(unsigned long long int num, int base, int letter, int len);
+
+size_t	ft_print_char(t_printf **fpf, char c);
+size_t	ft_print_string(t_printf **fpf, char c);
+size_t	ft_print_signed_int(t_printf **fpf, char c);
+size_t	ft_print_unsigned_int(t_printf **fpf, char c);
 
 #endif

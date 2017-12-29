@@ -12,46 +12,48 @@
 
 #include "ft_printf.h"
 
-static void	ft_dispatcher(t_printf **fpf, char c)
+static void	ft_dispatcher(t_printf **fpf)
 {
 	char *tmp;
+	char c = (*fpf)->format[(*fpf)->i];
 
 	if (c != '%' && c != 'c' && c != 's' && c != 'd' && c != 'i')
-		(*fpf)->i += 1;
-	else
+		return ;
+	if (c == '%')
 	{
-		if (c == '%')
-		{
-			(*fpf)->size++;
-			ft_putchar('%');
-		}
-		if (c == 'c')
-		{
-			(*fpf)->size++;
-			ft_putchar(va_arg((*fpf)->args, int));
-		}
-		if (c == 's')
-		{
-			tmp = va_arg((*fpf)->args, char *);
-			(*fpf)->size += ft_strlen(tmp);
-			ft_putstr(tmp);
-		}
-		if (c == 'd' || c == 'i')
-			ft_putnbr(va_arg((*fpf)->args, int));
-		(*fpf)->i += 2;
+		(*fpf)->size++;
+		ft_putchar('%');
 	}
+	if (c == 'c')
+	{
+		(*fpf)->size++;
+		ft_putchar(va_arg((*fpf)->args, int));
+	}
+	if (c == 's')
+	{
+		tmp = va_arg((*fpf)->args, char *);
+		(*fpf)->size += ft_strlen(tmp);
+		ft_putstr(tmp);
+	}
+	if (c == 'd' || c == 'i')
+		ft_putnbr(va_arg((*fpf)->args, int));
+	(*fpf)->i++;
 }
 
 static void	ft_lobi(t_printf **fpf)
 {
 	while ((*fpf)->format[(*fpf)->i])
 	{
-		if ((*fpf)->format[(*fpf)->i] == '%' && (*fpf)->format[(*fpf)->i + 1])
-			ft_dispatcher(&(*fpf), (*fpf)->format[(*fpf)->i + 1]);
+		if ((*fpf)->format[(*fpf)->i] == '%')
+		{
+			(*fpf)->size++;
+			(*fpf)->i++;
+			ft_dispatcher(&(*fpf));
+		}
 		else
 		{
 			ft_putchar((*fpf)->format[(*fpf)->i]);
-			(*fpf)->size += 1;
+			(*fpf)->size++;
 			(*fpf)->i++;
 		}
 	}

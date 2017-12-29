@@ -17,14 +17,14 @@ FLAGS		= 	-Wall -Werror -Wextra
 CC			=	gcc
 
 DIR_INC		=	./includes/
-DIR_LIBC	=	./libc/
+DIR_LIBFT	=	./libft/
 DIR_FPF		=	./printf/
 DIR_OBJ		= 	./obj/
 
-HEAD_LIBC	=	libft.h get_next_line.h
+HEAD_LIBFT	=	libft.h get_next_line.h
 HEAD_FPF	=	ft_printf.h
 
-C_LIBC		= 	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c\
+C_LIBFT		= 	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c\
 			ft_isascii.c ft_isdigit.c ft_islowercase.c ft_isprint.c ft_isspace.c\
 			ft_isstralpha.c ft_isstrdigit.c ft_isstrlowercase.c ft_isstruppercase.c\
 			ft_isuppercase.c ft_itoa.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c\
@@ -46,14 +46,14 @@ C_FPF		= 	main.c ft_printf.c ft_itoa_base.c
 
 
 
-OBJ_LIBC 	= 	$(C_LIBC:.c=.o)
+OBJ_LIBFT 	= 	$(C_LIBFT:.c=.o)
 OBJ_FPF 	= 	$(C_FPF:.c=.o)
 
-OBJ 		= 	$(addprefix $(DIR_OBJ),$(OBJ_LIBC))
+OBJ 		= 	$(addprefix $(DIR_OBJ),$(OBJ_LIBFT))
 OBJ 		+= 	$(addprefix $(DIR_OBJ),$(OBJ_FPF))
 
 INC 		= 	$(addprefix -I,$(DIR_INC))
-INC_LIBC 	= 	$(addprefix $(DIR_INC),$(HEAD_LIBC))
+INC_LIBFT 	= 	$(addprefix $(DIR_INC),$(HEAD_LIBFT))
 INC_FPF 	= 	$(addprefix $(DIR_INC),$(HEAD_FPF))
 
 
@@ -66,7 +66,7 @@ $(NAME): $(OBJ)
 	@gcc $(OBJ) -lm
 	@echo "Compiling" [ $(NAME) ]
 
-$(DIR_OBJ)%.o: $(DIR_LIBC)%.c $(INC_LIBC)
+$(DIR_OBJ)%.o: $(DIR_LIBFT)%.c $(INC_LIBFT)
 	@mkdir -p $(DIR_OBJ)
 	@$(CC) $(INC) -c -o $@ $<
 	@echo "Linking" [ $< ]

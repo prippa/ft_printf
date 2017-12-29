@@ -15,7 +15,7 @@
 
 int	main(void)
 {
-	printf("%d\n", ft_printf("%s: (!)\n", "Piglads"));
-	printf("%d\n", printf("%s: (!)\n", "Piglads"));
+	printf("%d\n", ft_printf("%s: (!)\n%", "Piglads"));
+	printf("%d\n", printf("%s: (!)\n%", "Piglads"));
 	return (0);
 }

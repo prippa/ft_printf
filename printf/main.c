@@ -15,13 +15,11 @@
 
 int	main(void)
 {
-	unsigned long long int ulli = -42;
-	// long long int num = -9223372036854775806;
-	// printf("%d\n", num);
-	// printf("%s\n", ft_itoa_lli((int)num));
-	// printf("%d\n", ft_printf("%%%s: (%d%c)", "Piglads", 123, '$'));
-	// printf("%d\n", printf("%%%s: (%d%c)", "Piglads", 123, '$'));
-	printf("%d\n", ft_printf("%o\n", ulli));
-	printf("%d\n", printf("%o\n", ulli));
+	wchar_t wstr[3];
+	wstr[0] = L'♥';
+	wstr[1] = L'+';
+	wstr[2] = L'\0';
+	printf("%d\n", ft_printf("%C\n", L'♥'));
+	printf("%d\n", ft_printf("%S\n", wstr));
 	return (0);
 }

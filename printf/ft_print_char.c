@@ -3,12 +3,20 @@
 
 size_t	ft_print_char(t_printf **fpf, char c)
 {
-	int l;
+	char *ch;
+	wchar_t tmp[2];
 
 	if (c == 'c')
 	{
-		l = va_arg((*fpf)->args, int);
-		return (write(1, &l, 1));
+		if (!(ch = ft_strnew(1)))
+			return (0);
+		ch[0] = (char)va_arg((*fpf)->args, int);
 	}
-	return (0);
+	else if (c == 'C')
+	{
+		tmp[0] = (wchar_t)va_arg((*fpf)->args, int);
+		tmp[1] = '\0';
+		ch = ft_wstr_to_str(tmp);
+	}
+	return (write(1, ch, ft_strlen(ch)));
 }

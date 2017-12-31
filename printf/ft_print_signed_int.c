@@ -7,7 +7,7 @@ size_t	ft_print_signed_int(t_printf **fpf, char c)
 
 	if (c == 'D')
 		str = ft_itoa_lli(va_arg((*fpf)->args, long));
-	if (c == 'd' || c == 'i')
+	else if (c == 'd' || c == 'i')
 		str = ft_itoa_lli(va_arg((*fpf)->args, int));
 	return (write(1, str, ft_strlen(str)));
 }

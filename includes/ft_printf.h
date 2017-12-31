@@ -15,7 +15,7 @@
 
 # include "libft.h"
 # include <stdarg.h>
-# include <inttypes.h>
+//# include <inttypes.h>
 # include <wchar.h>
 
 typedef	struct		s_printf

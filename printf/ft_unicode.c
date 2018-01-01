@@ -15,7 +15,7 @@ static int		ft_wcharlen(wchar_t wc)
 
 static size_t	ft_wstrlen(wchar_t *ws)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	if (!ws)
@@ -41,7 +41,7 @@ static size_t	ft_wbytelen(wchar_t *ws)
 	return (byte_len);
 }
 
-static int		ft_pull_wchar(wchar_t wc, char *fresh, int i)
+static int	ft_pull_wchar(wchar_t wc, char *fresh, int i)
 {
 	int		size;
 
@@ -69,7 +69,7 @@ static int		ft_pull_wchar(wchar_t wc, char *fresh, int i)
 	return (i);
 }
 
-char		*ft_wstr_to_str(wchar_t *ws)
+char			*ft_wstr_to_str(wchar_t *ws)
 {
 	char	*fresh;
 	int		i;

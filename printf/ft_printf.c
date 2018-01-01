@@ -21,11 +21,12 @@ static void	ft_dispatcher(t_printf **fpf)
 		(*fpf)->size += write(1, "%", 1);
 	else if (c == 'c' || c == 'C')
 		(*fpf)->size += ft_print_char(&(*fpf), c);
-	else if (c == 's' || c == 'S')
+	else if (c == 'p' || c == 's' || c == 'S')
 		(*fpf)->size += ft_print_string(&(*fpf), c);
 	else if (c == 'd' || c == 'D' || c == 'i')
 		(*fpf)->size += ft_print_signed_int(&(*fpf), c);
-	else if (c == 'o' || c == 'O' || c == 'u' || c == 'U' || c == 'x' || c == 'X')
+	else if (c == 'o' || c == 'O' || c == 'u' || c == 'U'
+		|| c == 'x' || c == 'X')
 		(*fpf)->size += ft_print_unsigned_int(&(*fpf), c);
 }
 

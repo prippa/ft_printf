@@ -27,7 +27,7 @@ char		*ft_itoa_lli(long long int num)
 	int		flag;
 	char	*fresh;
 
-	if (num == -9223372036854775808)
+	if (num == (-9223372036854775807) - 1)
 		return (ft_strdup("-9223372036854775808"));
 	len = ft_itoa_len(num);
 	flag = 0;

@@ -18,22 +18,7 @@ int	main(void)
 {
 	setlocale(LC_ALL, "");
 
-    // printf("%d\n", printf("%ls\n", L"مرحبا!"));
-    // printf("%d\n", ft_printf("%S\n", L"مرحبا!"));
-	// wchar_t wstr[3];
-	// wstr[0] = L'♥';
-	// wstr[1] = L'+';
-	// wstr[2] = L'\0';
-	// printf("%d\n", ft_printf("%c\n", '$'));
-	// printf("%d\n", ft_printf("%C\n", L'斯'));
-	//printf("%d\n", ft_printf("%S\n", L"مرحبا!"));
-
-	int a = 10;
-	int *b = &a;
-	char *str = "Hello Wordl!";
-	char **arr = &str;
-	printf("%p\n", 0);
-	ft_printf("%p\n", 0);
+    printf("%d\n", printf("%+d\n", -42));
 
 	return (0);
 }

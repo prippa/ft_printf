@@ -28,6 +28,13 @@ static void	ft_dispatcher(t_printf **fpf)
 	else if (c == 'o' || c == 'O' || c == 'u' || c == 'U'
 		|| c == 'x' || c == 'X')
 		(*fpf)->size += ft_print_unsigned_int(&(*fpf), c);
+	else if (c == ' ')
+	{
+		(*fpf)->i++;
+		ft_dispatcher(&(*fpf));
+	}
+	else
+		(*fpf)->i--;
 }
 
 static void	ft_lobi(t_printf **fpf)

@@ -15,8 +15,23 @@
 
 # include "libft.h"
 # include <stdarg.h>
-//# include <inttypes.h>
+# include <inttypes.h>
 # include <wchar.h>
+
+# define sf_h	1
+# define sf_hh	2
+# define sf_l	3
+# define sf_ll	4
+# define sf_j	5
+# define sf_z	6
+
+typedef	struct		s_flg
+{
+	char			flag;
+	int				widths;
+	int				size_flag;
+	char			type;
+}					t_flg;
 
 typedef	struct		s_printf
 {

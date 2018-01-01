@@ -15,12 +15,12 @@
 
 int	main(void)
 {
-	wchar_t wstr[3];
-	wstr[0] = L'♥';
-	wstr[1] = L'+';
-	wstr[2] = L'\0';
-	printf("%d\n", ft_printf("%c\n", '$'));
-	printf("%d\n", ft_printf("%C\n", L'斯'));
-	printf("%d\n", ft_printf("%S\n", wstr));
+	// wchar_t wstr[3];
+	// wstr[0] = L'♥';
+	// wstr[1] = L'+';
+	// wstr[2] = L'\0';
+	// printf("%d\n", ft_printf("%c\n", '$'));
+	// printf("%d\n", ft_printf("%C\n", L'斯'));
+	printf("%d\n", ft_printf("%S\n", L"مرحبا!"));
 	return (0);
 }

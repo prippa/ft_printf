@@ -9,12 +9,12 @@ size_t	ft_print_char(t_printf **fpf, char c)
 
 	if (c == 'c')
 	{
-		ch = va_arg((*fpf)->args, int);
+		ch = (char)va_arg((*fpf)->args, int);
 		return(write(1, &ch, 1));
 	}
 	else if (c == 'C')
 	{
-		tmp[0] = va_arg((*fpf)->args, int);
+		tmp[0] = (wchar_t)va_arg((*fpf)->args, int);
 		tmp[1] = '\0';
 		str = ft_wstr_to_str(tmp);
 	}

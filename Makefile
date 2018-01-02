@@ -42,9 +42,10 @@ C_LIBFT		= 	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c\
 			ft_strtrim.c ft_tolower.c ft_tostrlowercase.c ft_tostruppercase.c\
 			ft_toupper.c get_next_line.c
 
-C_FPF		= 	main.c ft_printf.c ft_itoa_base.c ft_itoa_lli.c\
-				ft_print_char.c ft_print_string.c ft_print_signed_int.c\
-				ft_print_unsigned_int.c ft_unicode.c
+C_FPF		= 	main.c ft_printf.c ft_itoa_base.c ft_itoa_lli.c ft_unicode.c\
+				ft_conv_sig_int.c ft_conv_unsig_int.c\
+				ft_print_p.c ft_print_ou.c ft_print_x.c\
+				ft_print_di.c ft_print_c.c ft_print_s.c
 
 
 

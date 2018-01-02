@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unicode.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/02 15:59:30 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/02 15:59:36 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -41,7 +52,7 @@ static size_t	ft_wbytelen(wchar_t *ws)
 	return (byte_len);
 }
 
-static int	ft_pull_wchar(wchar_t wc, char *fresh, int i)
+static int		ft_pull_wchar(wchar_t wc, char *fresh, int i)
 {
 	int		size;
 

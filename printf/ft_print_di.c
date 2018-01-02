@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_dDi.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/21 16:32:13 by prippa            #+#    #+#             */
-/*   Updated: 2017/12/21 16:32:21 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/02 14:23:44 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/02 14:23:46 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <locale.h>
-#include <stdio.h>
 
-int	main(void)
+size_t	ft_print_di(t_printf **fpf, char c, int size_flag)
 {
-	setlocale(LC_ALL, "");
-	ft_printf("%p\n", &ft_printf);
-	printf("%p\n", &ft_printf);
-	return (0);
+	int		len;
+	char	*str;
+
+	if (c == 'd' || c == 'i')
+		str = ft_itoa_lli(ft_conv_sig_int(&(*fpf), size_flag));
+	else
+		str = ft_itoa_lli(ft_conv_sig_int(&(*fpf), SF_L));
+	if (!str)
+		return (0);
+	len = write(1, str, ft_strlen(str));
+	free(str);
+	return (len);
 }

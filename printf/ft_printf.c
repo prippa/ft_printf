@@ -19,15 +19,18 @@ static void	ft_dispatcher(t_printf **fpf)
 	c = (*fpf)->format[(*fpf)->i];
 	if (c == '%')
 		(*fpf)->size += write(1, "%", 1);
+	else if (c == 'p')
+		(*fpf)->size += ft_print_p(&(*fpf));
 	else if (c == 'c' || c == 'C')
-		(*fpf)->size += ft_print_char(&(*fpf), c);
-	else if (c == 'p' || c == 's' || c == 'S')
-		(*fpf)->size += ft_print_string(&(*fpf), c);
+		(*fpf)->size += ft_print_c(&(*fpf), c);
+	else if (c == 's' || c == 'S')
+		(*fpf)->size += ft_print_s(&(*fpf), c);
 	else if (c == 'd' || c == 'D' || c == 'i')
-		(*fpf)->size += ft_print_signed_int(&(*fpf), c);
-	else if (c == 'o' || c == 'O' || c == 'u' || c == 'U'
-		|| c == 'x' || c == 'X')
-		(*fpf)->size += ft_print_unsigned_int(&(*fpf), c);
+		(*fpf)->size += ft_print_di(&(*fpf), c, 0);
+	else if (c == 'o' || c == 'u' || c == 'O' || c == 'U')
+		(*fpf)->size += ft_print_ou(&(*fpf), c, 0);
+	else if (c == 'x' || c == 'X')
+		(*fpf)->size += ft_print_x(&(*fpf), c, 0);
 	else if (c == ' ')
 	{
 		(*fpf)->i++;
@@ -57,14 +60,19 @@ static void	ft_lobi(t_printf **fpf)
 
 int			ft_printf(const char *format, ...)
 {
-	t_printf *fpf;
+	t_printf	*fpf;
+	size_t		len;
 
-	fpf = (t_printf*)malloc(sizeof(t_printf));
+	if (!(fpf = (t_printf*)malloc(sizeof(t_printf))))
+		return (0);
 	fpf->format = ft_strdup(format);
 	fpf->size = 0;
 	fpf->i = 0;
 	va_start(fpf->args, format);
 	ft_lobi(&fpf);
 	va_end(fpf->args);
-	return (fpf->size);
+	len = fpf->size;
+	free(fpf->format);
+	free(fpf);
+	return (len);
 }

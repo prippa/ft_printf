@@ -49,11 +49,11 @@ char					*ft_wstr_to_str(wchar_t *ws);
 long long int			ft_conv_sig_int(t_printf **fpf, int size_flag);
 unsigned long long int	ft_conv_unsig_int(t_printf **fpf, int size_flag);
 
-size_t					ft_print_c(t_printf **fpf, char c);
-size_t					ft_print_s(t_printf **fpf, char c);
-size_t					ft_print_p(t_printf **fpf);
+size_t					ft_print_c(t_printf **fpf, char c, int size_flag);
+size_t					ft_print_s(t_printf **fpf, char c, int size_flag);
 size_t					ft_print_ou(t_printf **fpf, char c, int size_flag);
 size_t					ft_print_x(t_printf **fpf, char c, int size_flag);
 size_t					ft_print_di(t_printf **fpf, char c, int size_flag);
+size_t					ft_print_p(t_printf **fpf);
 
 #endif

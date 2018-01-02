@@ -12,7 +12,33 @@
 
 #include "ft_printf.h"
 
-static void	ft_dispatcher(t_printf **fpf)
+static int	ft_identify_flag(t_printf **fpf)
+{
+	int		size_flag;
+	char	c_1;
+	char	c_2;
+
+	size_flag = 0;
+	c_1 = (*fpf)->format[(*fpf)->i];
+	c_2 = (*fpf)->format[(*fpf)->i + 1];
+	if (!c_1 || !c_2)
+		return (0);
+	if (c_1 == 'l' && c_2 == 'l' && (size_flag = SF_LL))
+		(*fpf)->i += 2;
+	else if (c_1 == 'l' && (size_flag = SF_L))
+		(*fpf)->i += 1;
+	else if (c_1 == 'h' && c_2 == 'h' && (size_flag = SF_HH))
+		(*fpf)->i += 2;
+	else if (c_1 == 'h' && (size_flag = SF_H))
+		(*fpf)->i += 1;
+	else if (c_1 == 'j' && (size_flag = SF_J))
+		(*fpf)->i += 1;
+	else if (c_1 == 'z' && (size_flag = SF_Z))
+		(*fpf)->i += 1;
+	return (size_flag);
+}
+
+static void	ft_dispatcher(t_printf **fpf, int size_flag)
 {
 	char c;
 
@@ -22,19 +48,19 @@ static void	ft_dispatcher(t_printf **fpf)
 	else if (c == 'p')
 		(*fpf)->size += ft_print_p(&(*fpf));
 	else if (c == 'c' || c == 'C')
-		(*fpf)->size += ft_print_c(&(*fpf), c);
+		(*fpf)->size += ft_print_c(&(*fpf), c, size_flag);
 	else if (c == 's' || c == 'S')
-		(*fpf)->size += ft_print_s(&(*fpf), c);
+		(*fpf)->size += ft_print_s(&(*fpf), c, size_flag);
 	else if (c == 'd' || c == 'D' || c == 'i')
-		(*fpf)->size += ft_print_di(&(*fpf), c, 0);
+		(*fpf)->size += ft_print_di(&(*fpf), c, size_flag);
 	else if (c == 'o' || c == 'u' || c == 'O' || c == 'U')
-		(*fpf)->size += ft_print_ou(&(*fpf), c, 0);
+		(*fpf)->size += ft_print_ou(&(*fpf), c, size_flag);
 	else if (c == 'x' || c == 'X')
-		(*fpf)->size += ft_print_x(&(*fpf), c, 0);
+		(*fpf)->size += ft_print_x(&(*fpf), c, size_flag);
 	else if (c == ' ')
 	{
 		(*fpf)->i++;
-		ft_dispatcher(&(*fpf));
+		ft_dispatcher(&(*fpf), size_flag);
 	}
 	else
 		(*fpf)->i--;
@@ -47,7 +73,7 @@ static void	ft_lobi(t_printf **fpf)
 		if ((*fpf)->format[(*fpf)->i] == '%')
 		{
 			(*fpf)->i++;
-			ft_dispatcher(&(*fpf));
+			ft_dispatcher(&(*fpf), ft_identify_flag(&(*fpf)));
 		}
 		else
 		{

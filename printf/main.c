@@ -17,7 +17,6 @@
 int	main(void)
 {
 	setlocale(LC_ALL, "");
-	ft_printf("%p\n", &ft_printf);
-	printf("%p\n", &ft_printf);
+	ft_printf("%ls\n", L"الحُرُوف العَرَبِيَّة");
 	return (0);
 }

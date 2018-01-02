@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-size_t	ft_print_s(t_printf **fpf, char c)
+size_t	ft_print_s(t_printf **fpf, char c, int size_flag)
 {
 	int		len;
 	void	*data;
@@ -21,6 +21,8 @@ size_t	ft_print_s(t_printf **fpf, char c)
 	data = va_arg((*fpf)->args, void *);
 	if (!data)
 		return (write(1, "(null)", 6));
+	if (size_flag == SF_L)
+		c = 'S';
 	if (c == 's')
 		str = (char *)data;
 	else

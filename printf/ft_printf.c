@@ -53,10 +53,9 @@ static void	ft_dispatcher(t_printf **fpf, int size_flag)
 		(*fpf)->size += ft_print_s(&(*fpf), c, size_flag);
 	else if (c == 'd' || c == 'D' || c == 'i')
 		(*fpf)->size += ft_print_di(&(*fpf), c, size_flag);
-	else if (c == 'o' || c == 'u' || c == 'O' || c == 'U')
-		(*fpf)->size += ft_print_ou(&(*fpf), c, size_flag);
-	else if (c == 'x' || c == 'X')
-		(*fpf)->size += ft_print_x(&(*fpf), c, size_flag);
+	else if (c == 'o' || c == 'O' || c == 'u' || c == 'U' ||
+		c == 'x' || c == 'X')
+		(*fpf)->size += ft_print_oux(&(*fpf), c, size_flag);
 	else if (c == ' ')
 	{
 		(*fpf)->i++;

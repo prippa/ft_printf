@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-size_t	ft_print_s(t_printf **fpf, char c, int size_flag)
+size_t	ft_print_s(t_printf *fpf, char c, int size_flag)
 {
 	int		len;
 	void	*data;
 	char	*str;
 
-	data = va_arg((*fpf)->args, void *);
+	data = va_arg(fpf->args, void *);
 	if (!data)
 		return (write(1, "(null)", 6));
 	if (size_flag == SF_L)

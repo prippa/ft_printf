@@ -12,23 +12,23 @@
 
 #include "ft_printf.h"
 
-unsigned long long int	ft_conv_unsig_int(t_printf **fpf, int size_flag)
+unsigned long long int	ft_conv_unsig_int(t_printf *fpf, int size_flag)
 {
 	unsigned long long int num;
 
 	if (size_flag == SF_HH)
-		num = (unsigned char)va_arg((*fpf)->args, unsigned long long int);
+		num = (unsigned char)va_arg(fpf->args, unsigned long long int);
 	else if (size_flag == SF_H)
-		num = (unsigned short)va_arg((*fpf)->args, unsigned long long int);
+		num = (unsigned short)va_arg(fpf->args, unsigned long long int);
 	else if (size_flag == SF_L)
-		num = (unsigned long)va_arg((*fpf)->args, unsigned long long int);
+		num = (unsigned long)va_arg(fpf->args, unsigned long long int);
 	else if (size_flag == SF_LL)
-		num = (unsigned long long)va_arg((*fpf)->args, unsigned long long int);
+		num = (unsigned long long)va_arg(fpf->args, unsigned long long int);
 	else if (size_flag == SF_J)
-		num = (uintmax_t)va_arg((*fpf)->args, unsigned long long int);
+		num = (uintmax_t)va_arg(fpf->args, unsigned long long int);
 	else if (size_flag == SF_Z)
-		num = (size_t)va_arg((*fpf)->args, unsigned long long int);
+		num = (size_t)va_arg(fpf->args, unsigned long long int);
 	else
-		num = (unsigned int)va_arg((*fpf)->args, unsigned long long int);
+		num = (unsigned int)va_arg(fpf->args, unsigned long long int);
 	return (num);
 }

@@ -12,15 +12,15 @@
 
 #include "ft_printf.h"
 
-size_t	ft_print_di(t_printf **fpf, char c, int size_flag)
+size_t	ft_print_di(t_printf *fpf, char c, int size_flag)
 {
 	int		len;
 	char	*str;
 
 	if (c == 'd' || c == 'i')
-		str = ft_itoa_lli(ft_conv_sig_int(&(*fpf), size_flag));
+		str = ft_itoa_lli(ft_conv_sig_int(fpf, size_flag));
 	else
-		str = ft_itoa_lli(ft_conv_sig_int(&(*fpf), SF_L));
+		str = ft_itoa_lli(ft_conv_sig_int(fpf, SF_L));
 	if (!str)
 		return (0);
 	len = write(1, str, ft_strlen(str));

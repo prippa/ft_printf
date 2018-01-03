@@ -12,23 +12,23 @@
 
 #include "ft_printf.h"
 
-long long int	ft_conv_sig_int(t_printf **fpf, int size_flag)
+long long int	ft_conv_sig_int(t_printf *fpf, int size_flag)
 {
 	long long int num;
 
 	if (size_flag == SF_HH)
-		num = (signed char)va_arg((*fpf)->args, long long int);
+		num = (signed char)va_arg(fpf->args, long long int);
 	else if (size_flag == SF_H)
-		num = (short)va_arg((*fpf)->args, long long int);
+		num = (short)va_arg(fpf->args, long long int);
 	else if (size_flag == SF_L)
-		num = (long)va_arg((*fpf)->args, long long int);
+		num = (long)va_arg(fpf->args, long long int);
 	else if (size_flag == SF_LL)
-		num = (long long)va_arg((*fpf)->args, long long int);
+		num = (long long)va_arg(fpf->args, long long int);
 	else if (size_flag == SF_J)
-		num = (intmax_t)va_arg((*fpf)->args, long long int);
+		num = (intmax_t)va_arg(fpf->args, long long int);
 	else if (size_flag == SF_Z)
-		num = (size_t)va_arg((*fpf)->args, long long int);
+		num = (size_t)va_arg(fpf->args, long long int);
 	else
-		num = (int)va_arg((*fpf)->args, long long int);
+		num = (int)va_arg(fpf->args, long long int);
 	return (num);
 }

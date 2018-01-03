@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-size_t	ft_print_p(t_printf **fpf)
+size_t	ft_print_p(t_printf *fpf)
 {
 	int		len;
 	char	*base_str;
 	char	*str;
 
-	if (!(base_str = ft_itoa_base(va_arg((*fpf)->args, unsigned long int),
+	if (!(base_str = ft_itoa_base(va_arg(fpf->args, unsigned long int),
 															16, 87, 0)))
 		return (0);
 	if (!(str = ft_strjoin("0x", base_str)))

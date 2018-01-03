@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-size_t	ft_print_c(t_printf **fpf, char c, int size_flag)
+size_t	ft_print_c(t_printf *fpf, char c, int size_flag)
 {
 	int		len;
 	char	ch;
@@ -23,12 +23,12 @@ size_t	ft_print_c(t_printf **fpf, char c, int size_flag)
 		c = 'C';
 	if (c == 'c')
 	{
-		ch = (char)va_arg((*fpf)->args, int);
+		ch = (char)va_arg(fpf->args, int);
 		return (write(1, &ch, 1));
 	}
 	else
 	{
-		tmp[0] = (wchar_t)va_arg((*fpf)->args, int);
+		tmp[0] = (wchar_t)va_arg(fpf->args, int);
 		if (!tmp[0])
 			return (write(1, "\0", 1));
 		tmp[1] = '\0';

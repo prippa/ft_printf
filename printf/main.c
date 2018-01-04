@@ -14,11 +14,22 @@
 #include <locale.h>
 #include <stdio.h>
 
+// printf("flags (%s)\nwidth (%d)\nprecision (%d)\nsize_flag (%d)\ntype (%c)\nstr (%s)\n",
+// 					flg.flag,
+// 					flg.width,
+// 					flg.precision,
+// 					flg.size_flag,
+// 					flg.type,
+// 					flg.str);
+
 int	main(void)
 {
 	setlocale(LC_ALL, "");
+	unsigned long long int a = -1;
 	//printf("%.5s = %0******.*f\n", "value trash", 10, 5, 3.141590000000000);
-	printf("%***c\n", 2, 3, 4, '$');
+	//ft_printf("%#-+   10.15llx!$#", a);
+	//printf("%030.17llx\n", a);
+	ft_printf("%lc\n", L'ة');
 	// char str[5];
 	// int i = 0;
 

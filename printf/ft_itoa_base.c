@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*ft_itoa_base(unsigned long long int num, int base, int letter, int len)
+char	*ft_itoa_base(unsigned long long int num, int base, int letter)
 {
 	int						i;
 	unsigned long long int	tmp;
@@ -36,5 +36,5 @@ char	*ft_itoa_base(unsigned long long int num, int base, int letter, int len)
 		else
 			buf[i] = op + 48;
 	}
-	return (ft_strdup(buf + i + len));
+	return (ft_strdup(buf + i));
 }

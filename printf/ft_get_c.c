@@ -12,31 +12,25 @@
 
 #include "ft_printf.h"
 
-size_t	ft_print_c(t_printf *fpf, char c, int size_flag)
+char	*ft_get_c(t_printf *fpf, char c, int size_flag)
 {
-	int		len;
-	char	ch;
 	char	*str;
 	wchar_t	tmp[2];
 
 	if (size_flag == SF_L)
-		c = 'C';
-	if (c == 'c')
+		c = 'l';
+	if (c == 'c' || c == 'C')
 	{
-		ch = (char)va_arg(fpf->args, int);
-		return (write(1, &ch, 1));
+		if (!(str = ft_strnew(1)))
+			return (NULL);
+		str[0] = (char)va_arg(fpf->args, int);
 	}
 	else
 	{
 		tmp[0] = (wchar_t)va_arg(fpf->args, int);
-		if (!tmp[0])
-			return (write(1, "\0", 1));
 		tmp[1] = '\0';
 		if (!(str = ft_wstr_to_str(tmp)))
-			return (0);
+			return (NULL);
 	}
-	len = write(1, str, ft_strlen(str));
-	if (c == 'C')
-		free(str);
-	return (len);
+	return (str);
 }

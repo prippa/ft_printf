@@ -12,26 +12,23 @@
 
 #include "ft_printf.h"
 
-size_t	ft_print_oux(t_printf *fpf, char c, int size_flag)
+char	*ft_get_oux(t_printf *fpf, char c, int size_flag)
 {
-	int		len;
 	char	*str;
 
 	if (c == 'o')
-		str = ft_itoa_base(ft_conv_unsig_int(fpf, size_flag), 8, 0, 0);
+		str = ft_itoa_base(ft_conv_unsig_int(fpf, size_flag), 8, 0);
 	else if (c == 'O')
-		str = ft_itoa_base(ft_conv_unsig_int(fpf, SF_L), 8, 0, 0);
+		str = ft_itoa_base(ft_conv_unsig_int(fpf, SF_L), 8, 0);
 	else if (c == 'u')
-		str = ft_itoa_base(ft_conv_unsig_int(fpf, size_flag), 10, 0, 0);
+		str = ft_itoa_base(ft_conv_unsig_int(fpf, size_flag), 10, 0);
 	else if (c == 'U')
-		str = ft_itoa_base(ft_conv_unsig_int(fpf, SF_L), 10, 0, 0);
+		str = ft_itoa_base(ft_conv_unsig_int(fpf, SF_L), 10, 0);
 	else if (c == 'x')
-		str = ft_itoa_base(ft_conv_unsig_int(fpf, size_flag), 16, 87, 0);
+		str = ft_itoa_base(ft_conv_unsig_int(fpf, size_flag), 16, 87);
 	else
-		str = ft_itoa_base(ft_conv_unsig_int(fpf, size_flag), 16, 55, 0);
+		str = ft_itoa_base(ft_conv_unsig_int(fpf, size_flag), 16, 55);
 	if (!str)
-		return (0);
-	len = write(1, str, ft_strlen(str));
-	free(str);
-	return (len);
+		return (NULL);
+	return (str);
 }

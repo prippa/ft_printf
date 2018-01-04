@@ -12,9 +12,12 @@
 
 #include "ft_printf.h"
 
-static void	ft_dispatcher(t_flag *flg)
+static void	ft_dispatcher(t_printf *fpf, t_flag *flg)
 {
-
+	if ((FC == 'c' || FC == 'C') && !flg->str[0])
+		fpf->size += write(1, "\0", 1);
+	else
+		fpf->size += write(1, flg->str, ft_strlen(flg->str));
 }
 
 static t_flag	ft_initialization(t_printf *fpf)
@@ -44,7 +47,7 @@ static void		ft_lobi(t_printf *fpf)
 			flg = ft_initialization(fpf);
 			if (flg.type)
 			{
-				ft_dispatcher(&flg);
+				ft_dispatcher(fpf, &flg);
 				free(flg.str);
 			}
 			else

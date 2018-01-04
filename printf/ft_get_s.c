@@ -12,26 +12,22 @@
 
 #include "ft_printf.h"
 
-size_t	ft_print_s(t_printf *fpf, char c, int size_flag)
+char	*ft_get_s(t_printf *fpf, char c, int size_flag)
 {
-	int		len;
 	void	*data;
 	char	*str;
 
 	data = va_arg(fpf->args, void *);
 	if (!data)
-		return (write(1, "(null)", 6));
+		return (ft_strdup("(null)"));
 	if (size_flag == SF_L)
 		c = 'S';
 	if (c == 's')
-		str = (char *)data;
+		str = ft_strdup((char *)data);
 	else
 	{
 		if (!(str = ft_wstr_to_str((wchar_t *)data)))
-			return (0);
+			return (NULL);
 	}
-	len = write(1, str, ft_strlen(str));
-	if (c == 'S')
-		free(str);
-	return (len);
+	return (str);
 }

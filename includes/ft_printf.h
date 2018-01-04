@@ -60,15 +60,15 @@ void					ft_get_flags(t_printf *fpf, t_flag *flg);
 void					ft_get_type(t_printf *fpf, t_flag *flg);
 char					*ft_itoa_lli(long long int num);
 char					*ft_itoa_base(unsigned long long int num,
-						int base, int letter, int len);
+						int base, int letter);
 char					*ft_wstr_to_str(wchar_t *ws);
 long long int			ft_conv_sig_int(t_printf *fpf, int size_flag);
 unsigned long long int	ft_conv_unsig_int(t_printf *fpf, int size_flag);
 
-size_t					ft_print_c(t_printf *fpf, char c, int size_flag);
-size_t					ft_print_s(t_printf *fpf, char c, int size_flag);
-size_t					ft_print_oux(t_printf *fpf, char c, int size_flag);
-size_t					ft_print_di(t_printf *fpf, char c, int size_flag);
-size_t					ft_print_p(t_printf *fpf);
+char					*ft_get_c(t_printf *fpf, char c, int size_flag);
+char					*ft_get_s(t_printf *fpf, char c, int size_flag);
+char					*ft_get_oux(t_printf *fpf, char c, int size_flag);
+char					*ft_get_di(t_printf *fpf, char c, int size_flag);
+char					*ft_get_p(t_printf *fpf);
 
 #endif

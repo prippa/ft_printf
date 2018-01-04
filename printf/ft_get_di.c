@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_p.c                                       :+:      :+:    :+:   */
+/*   ft_print_dDi.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/02 12:12:53 by prippa            #+#    #+#             */
-/*   Updated: 2018/01/02 12:12:56 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/02 14:23:44 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/02 14:23:46 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_print_p(t_printf *fpf)
+char	*ft_get_di(t_printf *fpf, char c, int size_flag)
 {
-	int		len;
-	char	*base_str;
 	char	*str;
 
-	if (!(base_str = ft_itoa_base(va_arg(fpf->args, unsigned long int),
-															16, 87, 0)))
-		return (0);
-	if (!(str = ft_strjoin("0x", base_str)))
-		return (0);
-	len = write(1, str, ft_strlen(str));
-	free(base_str);
-	free(str);
-	return (len);
+	if (c == 'd' || c == 'i')
+		str = ft_itoa_lli(ft_conv_sig_int(fpf, size_flag));
+	else
+		str = ft_itoa_lli(ft_conv_sig_int(fpf, SF_L));
+	if (!str)
+		return (NULL);
+	return (str);
 }

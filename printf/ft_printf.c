@@ -12,81 +12,56 @@
 
 #include "ft_printf.h"
 
-static int	ft_identify_flag(t_printf *fpf)
+static void	ft_dispatcher(t_flag *flg)
 {
-	int		size_flag;
-	char	c_1;
-	char	c_2;
 
-	size_flag = 0;
-	c_1 = fpf->format[fpf->i];
-	c_2 = fpf->format[fpf->i + 1];
-	if (!c_1 || !c_2)
-		return (0);
-	if (c_1 == 'l' && c_2 == 'l' && (size_flag = SF_LL))
-		fpf->i += 2;
-	else if (c_1 == 'l' && (size_flag = SF_L))
-		fpf->i += 1;
-	else if (c_1 == 'h' && c_2 == 'h' && (size_flag = SF_HH))
-		fpf->i += 2;
-	else if (c_1 == 'h' && (size_flag = SF_H))
-		fpf->i += 1;
-	else if (c_1 == 'j' && (size_flag = SF_J))
-		fpf->i += 1;
-	else if (c_1 == 'z' && (size_flag = SF_Z))
-		fpf->i += 1;
-	return (size_flag);
 }
 
-static void	ft_dispatcher(t_printf *fpf, int size_flag)
+static t_flag	ft_initialization(t_printf *fpf)
 {
-	char c;
+	t_flag flg;
 
-	c = fpf->format[fpf->i];
-	if (c == '%')
-		fpf->size += write(1, "%", 1);
-	else if (c == 'p')
-		fpf->size += ft_print_p(fpf);
-	else if (c == 'c' || c == 'C')
-		fpf->size += ft_print_c(fpf, c, size_flag);
-	else if (c == 's' || c == 'S')
-		fpf->size += ft_print_s(fpf, c, size_flag);
-	else if (c == 'd' || c == 'D' || c == 'i')
-		fpf->size += ft_print_di(fpf, c, size_flag);
-	else if (c == 'o' || c == 'O' || c == 'u' || c == 'U' ||
-		c == 'x' || c == 'X')
-		fpf->size += ft_print_oux(fpf, c, size_flag);
-	else if (c == ' ')
-	{
-		fpf->i++;
-		ft_dispatcher(fpf, size_flag);
-	}
-	else
-		fpf->i--;
+	ft_bzero(flg.flag, FLAG_SIZE);
+	flg.width = 0;
+	flg.precision = 0;
+	flg.size_flag = 0;
+	flg.type = '\0';
+	flg.str = NULL;
+	ft_get_flags(fpf, &flg);
+	ft_get_type(fpf, &flg);
+	return (flg);
 }
 
-static void	ft_lobi(t_printf *fpf)
+static void		ft_lobi(t_printf *fpf)
 {
-	while (FC)
+	t_flag flg;
+
+	while (PC)
 	{
-		if (FC == '%')
+		if (PC == '%')
 		{
 			fpf->i++;
-			ft_dispatcher(fpf, ft_identify_flag(fpf));
+			flg = ft_initialization(fpf);
+			if (flg.type)
+			{
+				ft_dispatcher(&flg);
+				free(flg.str);
+			}
+			else
+				fpf->i--;
 		}
 		else
 		{
-			ft_putchar(FC);
+			ft_putchar(PC);
 			fpf->size++;
 		}
 		fpf->i++;
 	}
 }
 
-int			ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
 	t_printf	fpf;
-	size_t		len;
 
 	fpf.format = ft_strdup(format);
 	fpf.size = 0;
@@ -94,7 +69,6 @@ int			ft_printf(const char *format, ...)
 	va_start(fpf.args, format);
 	ft_lobi(&fpf);
 	va_end(fpf.args);
-	len = fpf.size;
 	free(fpf.format);
-	return (len);
+	return (fpf.size);
 }

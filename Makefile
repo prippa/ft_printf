@@ -44,6 +44,7 @@ C_LIBFT		= 	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c\
 
 C_FPF		= 	main.c ft_printf.c ft_itoa_base.c ft_itoa_lli.c ft_unicode.c\
 				ft_conv_sig_int.c ft_conv_unsig_int.c\
+				ft_get_flags.c ft_get_type.c\
 				ft_print_p.c ft_print_oux.c\
 				ft_print_di.c ft_print_c.c ft_print_s.c
 

@@ -18,21 +18,33 @@
 # include <inttypes.h>
 # include <wchar.h>
 
-# define SF_H	1
-# define SF_HH	2
-# define SF_L	3
-# define SF_LL	4
-# define SF_J	5
-# define SF_Z	6
-# define FC fpf->format[fpf->i]
+# define SF_H			1
+# define SF_HH			2
+# define SF_L			3
+# define SF_LL			4
+# define SF_J			5
+# define SF_Z			6
+
+# define F_MINUS		0
+# define F_PLUS			1
+# define F_SPACE		2
+# define F_SHARP		3
+# define F_ZERO			4
+
+# define FLAG_SIZE		5
+# define NUMBER_SIZE	20
+
+# define PC fpf->format[fpf->i]
+# define FC flg->type
 
 typedef	struct			s_flag
 {
-	char				flag[5];
+	char				flag[FLAG_SIZE];
 	int					width;
-	int					accur;
+	int					precision;
 	int					size_flag;
 	char				type;
+	char				*str;
 }						t_flag;
 
 typedef	struct			s_printf
@@ -44,6 +56,8 @@ typedef	struct			s_printf
 }						t_printf;
 
 int						ft_printf(const char *format, ...);
+void					ft_get_flags(t_printf *fpf, t_flag *flg);
+void					ft_get_type(t_printf *fpf, t_flag *flg);
 char					*ft_itoa_lli(long long int num);
 char					*ft_itoa_base(unsigned long long int num,
 						int base, int letter, int len);

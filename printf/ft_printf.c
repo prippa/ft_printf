@@ -14,10 +14,24 @@
 
 static void	ft_dispatcher(t_printf *fpf, t_flag *flg)
 {
-	if ((FC == 'c' || FC == 'C') && !flg->str[0])
-		fpf->size += write(1, "\0", 1);
+	if (FC == 'c' || FC == 'C')
+		fpf->size += ft_output_c_modul(flg);
+	else if (FC == 's' || FC == 'S')
+		fpf->size += ft_output_s_modul(flg);
+	else if (FC == 'd' || FC == 'i' || FC == 'D')
+		fpf->size += ft_output_d_modul(flg);
 	else
 		fpf->size += write(1, flg->str, ft_strlen(flg->str));
+	// if (flg->width)
+	// {
+	// 	while (flg->width-- > ft_strlen(flg->str))
+	// 		fpf->size += write(1, " ", 1);
+	// }
+	// if (FC == 'c' || FC == 'C')
+	// 	fpf->size += write(1, &flg->str[0], 1);
+	// else
+	// 	fpf->size += write(1, flg->str, ft_strlen(flg->str));
+
 }
 
 static t_flag	ft_initialization(t_printf *fpf)
@@ -44,8 +58,10 @@ static void		ft_lobi(t_printf *fpf)
 		if (PC == '%')
 		{
 			fpf->i++;
+			if (!PC)
+				continue;
 			flg = ft_initialization(fpf);
-			if (flg.type)
+			if (flg.type && flg.str)
 			{
 				ft_dispatcher(fpf, &flg);
 				free(flg.str);

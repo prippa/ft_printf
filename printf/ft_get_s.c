@@ -19,11 +19,18 @@ char	*ft_get_s(t_printf *fpf, char c, int size_flag)
 
 	data = va_arg(fpf->args, void *);
 	if (!data)
-		return (ft_strdup("(null)"));
+	{
+		if (!(str = ft_strdup("(null)")))
+			return (NULL);
+		return (str);
+	}
 	if (size_flag == SF_L)
 		c = 'S';
 	if (c == 's')
-		str = ft_strdup((char *)data);
+	{
+		if (!(str = ft_strdup((char *)data)))
+			return (NULL);
+	}
 	else
 	{
 		if (!(str = ft_wstr_to_str((wchar_t *)data)))

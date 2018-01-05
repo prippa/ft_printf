@@ -25,16 +25,19 @@
 int	main(void)
 {
 	setlocale(LC_ALL, "");
-	unsigned long long int a = -1;
-	//printf("%.5s = %0******.*f\n", "value trash", 10, 5, 3.141590000000000);
-	//ft_printf("%#-+   10.15llx!$#", a);
-	//printf("%030.17llx\n", a);
-	ft_printf("%lc\n", L'ة');
-	// char str[5];
-	// int i = 0;
-
-	// ft_bzero(str, 5);
-	// while (str[i] == '\0')
-	// 	printf("%d\n", i++);
+	int width = 20;
+	int preci = 5;
+	// printf("%d\n", ft_printf("%0*.*p\n", width, preci, &printf));
+	// printf("%d\n", printf("%0*.*p\n", width, preci, &printf));
+	printf("%10.5d", 4242);
+	// printf("%d\n", ft_printf("%010.*lC\n", a, L'ツ'));
+	// printf("%d\n", printf("%010.*C\n", a, L'ツ'));
+	//printf("%d\n", printf("{%05.1C}", L'ツ'));
+	//printf("%d\n", ft_printf("{%5c}", 0));
+	//printf("%d\n", printf("%05.2s is a string", ""));
+	// printf("%d\n", ft_printf("%010.4S\n", L"ツツツ"));
+	// printf("%d\n", printf("{%5c}", 0));
 	return (0);
 }
+
+//system("leaks a.out > leaks");

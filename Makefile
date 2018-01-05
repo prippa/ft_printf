@@ -46,7 +46,9 @@ C_FPF		= 	main.c ft_printf.c ft_itoa_base.c ft_itoa_lli.c ft_unicode.c\
 				ft_conv_sig_int.c ft_conv_unsig_int.c\
 				ft_get_flags.c ft_get_type.c\
 				ft_get_p.c ft_get_oux.c\
-				ft_get_di.c ft_get_c.c ft_get_s.c
+				ft_get_di.c ft_get_c.c ft_get_s.c\
+				ft_print_width.c\
+				ft_output_c_modul.c ft_output_s_modul.c ft_output_d_modul.c\
 
 
 

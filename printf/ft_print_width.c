@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_c.c                                       :+:      :+:    :+:   */
+/*   ft_print_width.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/02 15:58:33 by prippa            #+#    #+#             */
-/*   Updated: 2018/01/02 15:58:37 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/05 12:28:54 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/05 12:28:57 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_get_c(t_printf *fpf, char c, int size_flag)
+size_t	ft_print_width(int n, char c)
 {
-	char	*str;
-	wchar_t	tmp[2];
+	size_t len;
 
-	if (size_flag == SF_L)
-		c = 'l';
-	if (c == 'c' || c == 'C')
-	{
-		if (!(str = (char*)malloc(sizeof(char) * 2)))
-			return (NULL);
-		str[0] = (char)va_arg(fpf->args, int);
-		str[1] = '\0';
-	}
-	else
-	{
-		tmp[0] = (wchar_t)va_arg(fpf->args, int);
-		tmp[1] = '\0';
-		if (!(str = ft_wstr_to_str(tmp)))
-			return (NULL);
-	}
-	return (str);
+	len = 0;
+	while (n--)
+		len += write(1, &c, 1);
+	return(len);
 }

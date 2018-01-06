@@ -110,7 +110,9 @@ size_t			ft_output_d_modul(t_flag *flg)
 	{
 		if (flg->width && !flg->flag[F_MINUS]
 		&& ((flg->flag[F_PLUS] && flg->str[0] != '-')
-		|| flg->flag[F_SPACE] || (flg->precision == len && flg->str[0] == '-')))
+		|| flg->flag[F_SPACE] || (flg->precision == len && flg->str[0] == '-')
+		|| (flg->str[0] == '-' && !flg->flag[F_ZERO]
+		&& flg->precision && flg->precision > len)))
 		flg->width--;
 		ft_base_d_modul_logic(flg, len, &size, 1);
 	}

@@ -31,8 +31,9 @@
 # define F_SHARP		3
 # define F_ZERO			4
 # define F_DOT			5
+# define F_STAR			6
 
-# define FLAG_SIZE		6
+# define FLAG_SIZE		7
 # define NUMBER_SIZE	20
 
 # define PC fpf->format[fpf->i]

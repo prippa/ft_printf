@@ -27,7 +27,14 @@ static void	ft_flags(t_printf *fpf, t_flag *flg)
 		else if (PC == '0')
 			flg->flag[F_ZERO] = '0';
 		else if (PC == '*')
-			flg->width = va_arg(fpf->args, int);
+		{
+			flg->flag[F_STAR] = '*';
+			if ((flg->width = va_arg(fpf->args, int)) < 0)
+			{
+				flg->flag[F_MINUS] = '-';
+				flg->width = flg->width * -1;
+			}
+		}
 		else
 			return ;
 		fpf->i++;
@@ -58,9 +65,12 @@ static void	ft_precision(t_printf *fpf, t_flag *flg)
 	{
 		if (PC == '*')
 		{
+			flg->flag[F_STAR] = '*';
 			while (PC == '*')
 			{
 				flg->precision = va_arg(fpf->args, int);
+				// if ((flg->precision = va_arg(fpf->args, int)) < 0)
+				// 	flg->precision = 0;
 				fpf->i++;
 			}
 		}

@@ -11,11 +11,14 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <stdio.h>
 static size_t	ft_rules(t_flag *flg, size_t len, size_t size, int print)
 {
-	if (!ft_strlen(flg->str) && !(len = 0))
+	if (!ft_strlen(flg->str))
+	{
+		len = 0;
 		print = 0;
+	}
 	if (print && flg->flag[F_MINUS] && !(print = 0))
 		size += write(1, flg->str, len);
 	if (flg->width)
@@ -36,15 +39,21 @@ size_t			ft_output_s_modul(t_flag *flg)
 	size_t	size;
 	int		print;
 
-	if (flg->precision)
+	len = ft_strlen(flg->str);
+	if (flg->precision < 0)
+		flg->precision = 0;
+	else if (flg->precision)
 	{
-		if (FC == 'S')
+		if (FC == 'S' && !ft_isascii(flg->str[flg->precision - 1]))
+		{
 			while (flg->precision % 3 > 0)
 				flg->precision--;
+		}
+		if (len > flg->precision)
+			len = flg->precision;
+	} 
+	else if (flg->flag[F_DOT])
 		len = flg->precision;
-	}
-	else
-		len = ft_strlen(flg->str);
 	size = 0;
 	print = 1;
 	size += ft_rules(flg, len, size, print);

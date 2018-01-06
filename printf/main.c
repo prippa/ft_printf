@@ -30,9 +30,19 @@ int	main(void)
 	// printf("%d\n", ft_printf("%0*.*p\n", width, preci, &printf));
 	// printf("%d\n", printf("%0*.*p\n", width, preci, &printf));
 
+	printf("{%.*s}\n", 0, "42");
+	ft_printf("{%.*s}\n", 0, "42");
 
-	printf("%d\n", printf("%-03.2d", 0));
-	printf("%d\n", ft_printf("%-03.2d", 0));
+	printf("{%.*s}\n", -1, "42");
+	ft_printf("{%.*s}\n", -1, "42");
+	// printf("%d\n", printf("%15.4d", -1234));
+	// printf("%d\n", ft_printf("%15.4d", -1234));
+
+	// printf("%d\n", printf("%05.s", "42"));
+	// printf("%d\n", ft_printf("%05.s", "42"));
+
+	// printf("%d\n", printf("{%3*d}", 0, 0));
+	// printf("%d\n", ft_printf("{%3*d}", 0, 0));
 	// printf("\n\n\n");
 	// printf("%d\n", printf("@moulitest: %.d %.0d", 0, 0));
 	// printf("%d\n", ft_printf("@moulitest: %.d %.0d", 0, 0));

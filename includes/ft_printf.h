@@ -30,12 +30,15 @@
 # define F_SPACE		2
 # define F_SHARP		3
 # define F_ZERO			4
+# define F_DOT			5
 
-# define FLAG_SIZE		5
+# define FLAG_SIZE		6
 # define NUMBER_SIZE	20
 
 # define PC fpf->format[fpf->i]
 # define FC flg->type
+
+# define MAX(a, b) (a > b ? a : b)
 
 typedef	struct			s_flag
 {

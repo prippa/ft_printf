@@ -54,9 +54,8 @@ static int	ft_get_number(t_printf *fpf)
 
 static void	ft_precision(t_printf *fpf, t_flag *flg)
 {
-	if (PC == '.')
+	if (flg->flag[F_DOT])
 	{
-		fpf->i++;
 		if (PC == '*')
 		{
 			while (PC == '*')
@@ -98,6 +97,14 @@ void		ft_get_flags(t_printf *fpf, t_flag *flg)
 	ft_flags(fpf, flg);
 	if (!flg->width)
 		flg->width = ft_get_number(fpf);
+	while (PC)
+	{
+		if (PC == '.')
+			flg->flag[F_DOT] = '.';
+		else
+			break ;
+		fpf->i++;
+	}
 	ft_precision(fpf, flg);
 	ft_size_flag(fpf, flg);
 }

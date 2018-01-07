@@ -14,15 +14,13 @@
 
 static int		ft_wcharlen(wchar_t wc)
 {
-	if (wc <= 7)
+	if (wc <= 0x7f)
 		return (1);
-	else if (wc <= 11)
+	else if (wc <= 0x7ff)
 		return (2);
-	else if (wc <= 16)
+	else (wc <= 0xffff)
 		return (3);
-	else if (wc <= 21)
-		return (4);
-	return (0);
+	return (4);
 }
 
 static size_t	ft_wstrlen(wchar_t *ws)

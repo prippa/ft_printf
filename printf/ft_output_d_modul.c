@@ -102,6 +102,8 @@ size_t			ft_output_d_modul(t_flag *flg)
 
 	len = ft_strlen(flg->str);
 	size = 0;
+	if (flg->precision < 0 && (flg->precision = flg->width))
+		flg->width = 0;
 	if (flg->flag[F_DOT] && flg->flag[F_ZERO] && !flg->precision)
 		flg->flag[F_ZERO] = '\0';
 	if (flg->str[0] == '0' && flg->flag[F_DOT])
@@ -115,7 +117,7 @@ size_t			ft_output_d_modul(t_flag *flg)
 		|| flg->flag[F_SPACE] || (flg->precision == len && flg->str[0] == '-')
 		|| (flg->str[0] == '-' && !flg->flag[F_ZERO]
 		&& flg->precision && flg->precision > len)))
-		flg->width--;
+			flg->width--;
 		ft_base_d_modul_logic(flg, len, &size, 1);
 	}
 	return (size);

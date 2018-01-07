@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	ft_dispatcher(t_printf *fpf, t_flag *flg)
+static void		ft_dispatcher(t_printf *fpf, t_flag *flg)
 {
 	if (FC == 'c' || FC == 'C')
 		fpf->size += ft_output_c_modul(flg);
@@ -28,7 +28,6 @@ static void	ft_dispatcher(t_printf *fpf, t_flag *flg)
 		fpf->size += ft_output_p_modul(flg);
 	else
 		fpf->size += write(1, flg->str, ft_strlen(flg->str));
-
 }
 
 static t_flag	ft_initialization(t_printf *fpf)

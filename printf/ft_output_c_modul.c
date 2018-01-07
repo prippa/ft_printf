@@ -59,6 +59,7 @@ static size_t	ft_modul_char(t_flag *flg)
 size_t			ft_output_c_modul(t_flag *flg)
 {
 	size_t	size;
+
 	if (flg->size_flag)
 		size = ft_modul_wchar(flg);
 	else

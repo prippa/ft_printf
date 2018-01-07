@@ -20,7 +20,8 @@ static void		ft_percision_tricks(t_flag *flg, size_t *len)
 	if (flg->flag[F_DOT] && !flg->precision && flg->str[0] == '0'
 		&& flg->flag[F_SHARP] && (FC == 'x' || FC == 'X'))
 		*len = 0;
-	if (flg->flag[F_DOT] && flg->precision && flg->flag[F_SHARP] && (FC == 'o' || FC == 'O'))
+	if (flg->flag[F_DOT] && flg->precision
+		&& flg->flag[F_SHARP] && (FC == 'o' || FC == 'O'))
 		flg->flag[F_SHARP] = '\0';
 }
 

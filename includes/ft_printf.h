@@ -15,7 +15,6 @@
 
 # include "libft.h"
 # include <stdarg.h>
-# include <inttypes.h>
 # include <wchar.h>
 
 # define SF_H			1

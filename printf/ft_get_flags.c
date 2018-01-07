@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-static void	ft_flags(t_printf *fpf, t_flag *flg)
+
+static void		ft_flags(t_printf *fpf, t_flag *flg)
 {
 	while (PC)
 	{
@@ -40,7 +40,7 @@ static void	ft_flags(t_printf *fpf, t_flag *flg)
 	}
 }
 
-static void	ft_get_width_or_precision(t_printf *fpf, t_flag *flg, char c)
+static void		ft_get_width_or_precision(t_printf *fpf, t_flag *flg, char c)
 {
 	char	wipi[20];
 	int		i;
@@ -64,7 +64,7 @@ static void	ft_get_width_or_precision(t_printf *fpf, t_flag *flg, char c)
 		flg->precision = 0;
 }
 
-static void	ft_precision(t_printf *fpf, t_flag *flg)
+static void		ft_precision(t_printf *fpf, t_flag *flg)
 {
 	while (PC)
 	{
@@ -89,7 +89,7 @@ static void	ft_precision(t_printf *fpf, t_flag *flg)
 	}
 }
 
-static void	ft_size_flag(t_printf *fpf, t_flag *flg)
+static void		ft_size_flag(t_printf *fpf, t_flag *flg)
 {
 	while (PC && SIZE_FLAGS(PC))
 	{
@@ -112,11 +112,11 @@ static void	ft_size_flag(t_printf *fpf, t_flag *flg)
 			&& (flg->size_flag = SF_Z))
 			fpf->i += 1;
 		else
-		 	fpf->i++;
+			fpf->i++;
 	}
 }
 
-void		ft_get_flags(t_printf *fpf, t_flag *flg)
+void			ft_get_flags(t_printf *fpf, t_flag *flg)
 {
 	while (PC && (SIZE_FLAGS(PC) || FLAGS(PC) || BONUS_FLAGS(PC)
 		|| ft_isdigit(PC)))

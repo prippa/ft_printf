@@ -51,7 +51,7 @@ size_t			ft_output_s_modul(t_flag *flg)
 		}
 		if (len > flg->precision)
 			len = flg->precision;
-	} 
+	}
 	else if (flg->flag[F_DOT])
 		len = flg->precision;
 	size = 0;

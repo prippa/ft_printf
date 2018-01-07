@@ -14,57 +14,10 @@
 #include <locale.h>
 #include <stdio.h>
 
-// printf("flags (%s)\nwidth (%d)\nprecision (%d)\nsize_flag (%d)\ntype (%c)\nstr (%s)\n",
-// 					flg.flag,
-// 					flg.width,
-// 					flg.precision,
-// 					flg.size_flag,
-// 					flg.type,
-// 					flg.str);
-
 int	main(void)
 {
 	setlocale(LC_ALL, "");
-	int width = 20;
-	int preci = 5;
-	// printf("%d\n", ft_printf("%0*.*p\n", width, preci, &printf));
-	// printf("%d\n", printf("%0*.*p\n", width, preci, &printf));
-
-	// printf("%d\n", printf("@main_ftprintf: %####0000 33..1..#00d\n", 256));
-	// printf("%d\n", ft_printf("@main_ftprintf: %####0000 33..1..#00d\n", 256));
-
-	printf("%d\n", printf("{%.*s}", -5, "42"));
-	printf("%d\n", ft_printf("{%.*s}", -5, "42"));
-
-	// printf("{%.*s}\n", -1, "42");
-	// ft_printf("{%.*s}\n", -1, "42");
-	// 
-	// printf("%d\n", printf("%15.4d", -1234));
-	// printf("%d\n", ft_printf("%15.4d", -1234));
-
-	// printf("%d\n", printf("%05.s", "42"));
-	// printf("%d\n", ft_printf("%05.s", "42"));
-
-	// printf("%d\n", printf("{%3*d}", 0, 0));
-	// printf("%d\n", ft_printf("{%3*d}", 0, 0));
-	// printf("\n\n\n");
-	// printf("%d\n", printf("@moulitest: %.d %.0d", 0, 0));
-	// printf("%d\n", ft_printf("@moulitest: %.d %.0d", 0, 0));
-	// printf("\n\n\n");
-	// printf("%d\n", printf("@moulitest: %5.d %5.0d", 0, 0));
-	// printf("%d\n", ft_printf("@moulitest: %5.d %5.0d", 0, 0));
-	// printf("\n\n\n");
-
-
-	//printf("%d\n", ft_printf("% +010.5d", -4242));
-	// printf("%d\n", ft_printf("%010.*lC\n", a, L'ツ'));
-	// printf("%d\n", printf("%010.*C\n", a, L'ツ'));
-	//printf("%d\n", printf("{%05.1C}", L'ツ'));
-	//printf("%d\n", ft_printf("{%5c}", 0));
-	//printf("%d\n", printf("%05.2s is a string", ""));
-	// printf("%d\n", ft_printf("%010.4S\n", L"ツツツ"));
-	// printf("%d\n", printf("{%5c}", 0));
+	printf("%d\n", printf("%lC", L'ÁM-^L´'));
+	printf("%d\n", ft_printf("%lC", L'ÁM-^L´'));
 	return (0);
 }
-
-//system("leaks a.out > leaks");

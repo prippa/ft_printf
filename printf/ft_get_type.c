@@ -56,6 +56,6 @@ void		ft_get_type(t_printf *fpf, t_flag *flg)
 		flg->str = ft_get_di(fpf, PC, flg->size_flag);
 	else if (PC == 'i' && (FC = PC))
 		flg->str = ft_get_di(fpf, PC, flg->size_flag);
-	else 
+	else
 		ft_get_type_1(fpf, flg);
 }

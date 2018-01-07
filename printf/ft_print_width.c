@@ -20,5 +20,5 @@ size_t	ft_print_width(int n, char c)
 	if (n > 0)
 		while (n--)
 			len += write(1, &c, 1);
-	return(len);
+	return (len);
 }

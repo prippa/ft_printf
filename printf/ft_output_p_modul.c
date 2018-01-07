@@ -32,7 +32,7 @@ static size_t	ft_base_p_modul_logic(t_flag *flg, size_t len)
 			size += ft_print_width(flg->width - MAX(len, flg->precision), ' ');
 	}
 	if (flag)
-		size += write (1, "0x", 2);
+		size += write(1, "0x", 2);
 	if (flg->precision)
 		size += ft_print_width(flg->precision - len, '0');
 	size += write(1, flg->str, len);

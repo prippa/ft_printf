@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <stdio.h>
 static void	ft_flags(t_printf *fpf, t_flag *flg)
 {
 	while (PC)
@@ -28,7 +28,6 @@ static void	ft_flags(t_printf *fpf, t_flag *flg)
 			flg->flag[F_ZERO] = '0';
 		else if (PC == '*')
 		{
-			flg->flag[F_STAR] = '*';
 			if ((flg->width = va_arg(fpf->args, int)) < 0)
 			{
 				flg->flag[F_MINUS] = '-';
@@ -41,72 +40,32 @@ static void	ft_flags(t_printf *fpf, t_flag *flg)
 	}
 }
 
-static int	ft_get_number(t_printf *fpf)
+static void	ft_get_width_or_precision(t_printf *fpf, t_flag *flg, char c)
 {
-	char	width[NUMBER_SIZE];
+	char	wipi[20];
 	int		i;
 
-	ft_bzero(width, NUMBER_SIZE);
+	ft_bzero(wipi, 20);
 	i = 0;
-	while (ft_isdigit(PC) && i < NUMBER_SIZE)
+	while (ft_isdigit(PC) && i < 20)
 	{
-		width[i] = PC;
+		wipi[i] = PC;
 		fpf->i++;
 		i++;
 	}
 	if (i)
-		return(ft_atoi(width));
-	return (0);
+	{
+		if (c == 'w')
+			flg->width = ft_atoi(wipi);
+		else if (c == 'p')
+			flg->precision = ft_atoi(wipi);
+	}
+	else if (c == 'p')
+		flg->precision = 0;
 }
 
 static void	ft_precision(t_printf *fpf, t_flag *flg)
 {
-	if (flg->flag[F_DOT])
-	{
-		if (PC == '*')
-		{
-			flg->flag[F_STAR] = '*';
-			while (PC == '*')
-			{
-				flg->precision = va_arg(fpf->args, int);
-				// if ((flg->precision = va_arg(fpf->args, int)) < 0)
-				// 	flg->precision = 0;
-				fpf->i++;
-			}
-		}
-		else
-			flg->precision = ft_get_number(fpf);
-	}
-}
-
-static void	ft_size_flag(t_printf *fpf, t_flag *flg)
-{
-	char	c_1;
-	char	c_2;
-
-	c_1 = fpf->format[fpf->i];
-	c_2 = fpf->format[fpf->i + 1];
-	if (!c_1 || !c_2)
-		return ;
-	if (c_1 == 'l' && c_2 == 'l' && (flg->size_flag = SF_LL))
-		fpf->i += 2;
-	else if (c_1 == 'l' && (flg->size_flag = SF_L))
-		fpf->i += 1;
-	else if (c_1 == 'h' && c_2 == 'h' && (flg->size_flag = SF_HH))
-		fpf->i += 2;
-	else if (c_1 == 'h' && (flg->size_flag = SF_H))
-		fpf->i += 1;
-	else if (c_1 == 'j' && (flg->size_flag = SF_J))
-		fpf->i += 1;
-	else if (c_1 == 'z' && (flg->size_flag = SF_Z))
-		fpf->i += 1;
-}
-
-void		ft_get_flags(t_printf *fpf, t_flag *flg)
-{
-	ft_flags(fpf, flg);
-	if (!flg->width)
-		flg->width = ft_get_number(fpf);
 	while (PC)
 	{
 		if (PC == '.')
@@ -115,6 +74,56 @@ void		ft_get_flags(t_printf *fpf, t_flag *flg)
 			break ;
 		fpf->i++;
 	}
-	ft_precision(fpf, flg);
-	ft_size_flag(fpf, flg);
+	if (flg->flag[F_DOT])
+	{
+		if (PC == '*')
+		{
+			while (PC == '*')
+			{
+				flg->precision = va_arg(fpf->args, int);
+				fpf->i++;
+			}
+		}
+		else
+			ft_get_width_or_precision(fpf, flg, 'p');
+	}
+}
+
+static void	ft_size_flag(t_printf *fpf, t_flag *flg)
+{
+	while (PC && SIZE_FLAGS(PC))
+	{
+		if (PC == 'l' && PC_1 == 'l' && flg->size_flag < SF_LL
+			&& (flg->size_flag = SF_LL))
+			fpf->i += 2;
+		else if (PC == 'l' && flg->size_flag < SF_L
+			&& (flg->size_flag = SF_L))
+			fpf->i += 1;
+		else if (PC == 'h' && PC_1 == 'h' && flg->size_flag < SF_HH
+			&& (flg->size_flag = SF_HH))
+			fpf->i += 2;
+		else if (PC == 'h' && flg->size_flag < SF_H
+			&& (flg->size_flag = SF_H))
+			fpf->i += 1;
+		else if (PC == 'j' && flg->size_flag < SF_J
+			&& (flg->size_flag = SF_J))
+			fpf->i += 1;
+		else if (PC == 'z' && flg->size_flag < SF_Z
+			&& (flg->size_flag = SF_Z))
+			fpf->i += 1;
+		else
+		 	fpf->i++;
+	}
+}
+
+void		ft_get_flags(t_printf *fpf, t_flag *flg)
+{
+	while (PC && (SIZE_FLAGS(PC) || FLAGS(PC) || BONUS_FLAGS(PC)
+		|| ft_isdigit(PC)))
+	{
+		ft_flags(fpf, flg);
+		ft_get_width_or_precision(fpf, flg, 'w');
+		ft_precision(fpf, flg);
+		ft_size_flag(fpf, flg);
+	}
 }

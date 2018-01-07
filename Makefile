@@ -49,6 +49,8 @@ C_FPF		= 	main.c ft_printf.c ft_itoa_base.c ft_itoa_lli.c ft_unicode.c\
 				ft_get_di.c ft_get_c.c ft_get_s.c\
 				ft_print_width.c\
 				ft_output_c_modul.c ft_output_s_modul.c ft_output_d_modul.c\
+				ft_output_u_modul.c ft_output_ox_modul.c\
+				ft_output_p_modul.c
 
 
 
@@ -88,6 +90,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f a.out
 	@echo "Clean" [ $(NAME) ]
 
 re: fclean all

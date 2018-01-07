@@ -31,14 +31,15 @@
 # define F_SHARP		3
 # define F_ZERO			4
 # define F_DOT			5
-# define F_STAR			6
 
-# define FLAG_SIZE		7
-# define NUMBER_SIZE	20
+# define FLAG_SIZE		6
 
 # define PC fpf->format[fpf->i]
+# define PC_1 fpf->format[fpf->i + 1]
 # define FC flg->type
-
+# define SIZE_FLAGS(c) c == 'l' || c == 'h' || c == 'j' || c == 'z'
+# define FLAGS(c) c == '-' || c == '+' || c == ' ' || c == '#' || c == '0'
+# define BONUS_FLAGS(c) c == '*' || c == '.'
 # define MAX(a, b) (a > b ? a : b)
 
 typedef	struct			s_flag
@@ -79,5 +80,8 @@ size_t					ft_print_width(int n, char c);
 size_t					ft_output_c_modul(t_flag *flg);
 size_t					ft_output_s_modul(t_flag *flg);
 size_t					ft_output_d_modul(t_flag *flg);
+size_t					ft_output_u_modul(t_flag *flg);
+size_t					ft_output_ox_modul(t_flag *flg);
+size_t					ft_output_p_modul(t_flag *flg);
 
 #endif

@@ -14,14 +14,5 @@
 
 char	*ft_get_p(t_printf *fpf)
 {
-	char	*base_str;
-	char	*str;
-
-	if (!(base_str = ft_itoa_base(va_arg(fpf->args, unsigned long int),
-															16, 87)))
-		return (NULL);
-	if (!(str = ft_strjoin("0x", base_str)))
-		return (NULL);
-	free(base_str);
-	return (str);
+	return (ft_itoa_base(va_arg(fpf->args, unsigned long int), 16, 87));
 }

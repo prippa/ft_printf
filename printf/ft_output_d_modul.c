@@ -73,7 +73,7 @@ static void		ft_base_d_modul_logic(t_flag *flg, size_t len,
 	}
 }
 
-static size_t	ft_logic_with_minus(t_flag *flg, size_t len)
+static size_t	ft_logic_d_with_minus(t_flag *flg, size_t len)
 {
 	size_t	size;
 
@@ -102,10 +102,12 @@ size_t			ft_output_d_modul(t_flag *flg)
 
 	len = ft_strlen(flg->str);
 	size = 0;
+	if (flg->flag[F_DOT] && flg->flag[F_ZERO] && !flg->precision)
+		flg->flag[F_ZERO] = '\0';
 	if (flg->str[0] == '0' && flg->flag[F_DOT])
 		len = 0;
 	if (flg->flag[F_MINUS])
-		size += ft_logic_with_minus(flg, len);
+		size += ft_logic_d_with_minus(flg, len);
 	else
 	{
 		if (flg->width && !flg->flag[F_MINUS]

@@ -30,11 +30,15 @@ int	main(void)
 	// printf("%d\n", ft_printf("%0*.*p\n", width, preci, &printf));
 	// printf("%d\n", printf("%0*.*p\n", width, preci, &printf));
 
-	printf("{%.*s}\n", 0, "42");
-	ft_printf("{%.*s}\n", 0, "42");
+	// printf("%d\n", printf("@main_ftprintf: %####0000 33..1..#00d\n", 256));
+	// printf("%d\n", ft_printf("@main_ftprintf: %####0000 33..1..#00d\n", 256));
 
-	printf("{%.*s}\n", -1, "42");
-	ft_printf("{%.*s}\n", -1, "42");
+	printf("%d\n", printf("{%.*s}", -5, "42"));
+	printf("%d\n", ft_printf("{%.*s}", -5, "42"));
+
+	// printf("{%.*s}\n", -1, "42");
+	// ft_printf("{%.*s}\n", -1, "42");
+	// 
 	// printf("%d\n", printf("%15.4d", -1234));
 	// printf("%d\n", ft_printf("%15.4d", -1234));
 

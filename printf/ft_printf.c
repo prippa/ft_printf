@@ -20,17 +20,14 @@ static void	ft_dispatcher(t_printf *fpf, t_flag *flg)
 		fpf->size += ft_output_s_modul(flg);
 	else if (FC == 'd' || FC == 'i' || FC == 'D')
 		fpf->size += ft_output_d_modul(flg);
+	else if (FC == 'u' || FC == 'U')
+		fpf->size += ft_output_u_modul(flg);
+	else if (FC == 'o' || FC == 'O' || FC == 'x' || FC == 'X')
+		fpf->size += ft_output_ox_modul(flg);
+	else if (FC == 'p')
+		fpf->size += ft_output_p_modul(flg);
 	else
 		fpf->size += write(1, flg->str, ft_strlen(flg->str));
-	// if (flg->width)
-	// {
-	// 	while (flg->width-- > ft_strlen(flg->str))
-	// 		fpf->size += write(1, " ", 1);
-	// }
-	// if (FC == 'c' || FC == 'C')
-	// 	fpf->size += write(1, &flg->str[0], 1);
-	// else
-	// 	fpf->size += write(1, flg->str, ft_strlen(flg->str));
 
 }
 

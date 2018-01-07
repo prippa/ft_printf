@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
 static size_t	ft_rules(t_flag *flg, size_t len, size_t size, int print)
 {
 	if (!ft_strlen(flg->str))

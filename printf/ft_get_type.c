@@ -26,7 +26,7 @@ static void	ft_get_type_1(t_printf *fpf, t_flag *flg)
 		flg->str = ft_get_oux(fpf, PC, flg->size_flag);
 	else if (PC == 'X' && (FC = PC))
 		flg->str = ft_get_oux(fpf, PC, flg->size_flag);
-	else
+	else if (PC)
 	{
 		FC = 'c';
 		if (!(flg->str = (char*)malloc(sizeof(char) * 2)))

@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-static size_t	ft_base_u_modul_logic(t_flag *flg, size_t len)
+static int	ft_base_u_modul_logic(t_flag *flg, int len)
 {
-	size_t size;
+	int size;
 
 	size = 0;
 	if (flg->width)
@@ -30,10 +30,10 @@ static size_t	ft_base_u_modul_logic(t_flag *flg, size_t len)
 	return (size);
 }
 
-size_t			ft_output_u_modul(t_flag *flg)
+int			ft_output_u_modul(t_flag *flg)
 {
-	size_t	len;
-	size_t	size;
+	int	len;
+	int	size;
 
 	len = ft_strlen(flg->str);
 	size = 0;

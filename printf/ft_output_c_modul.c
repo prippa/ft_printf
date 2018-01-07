@@ -12,11 +12,11 @@
 
 #include "ft_printf.h"
 
-static size_t	ft_modul_wchar(t_flag *flg)
+static int	ft_modul_wchar(t_flag *flg)
 {
-	size_t	len;
-	size_t	size;
-	int		print;
+	int	len;
+	int	size;
+	int	print;
 
 	len = ft_strlen(flg->str);
 	print = 1;
@@ -35,10 +35,10 @@ static size_t	ft_modul_wchar(t_flag *flg)
 	return (size);
 }
 
-static size_t	ft_modul_char(t_flag *flg)
+static int	ft_modul_char(t_flag *flg)
 {
-	size_t	size;
-	int		print;
+	int	size;
+	int	print;
 
 	print = 1;
 	size = 0;
@@ -56,9 +56,9 @@ static size_t	ft_modul_char(t_flag *flg)
 	return (size);
 }
 
-size_t			ft_output_c_modul(t_flag *flg)
+int			ft_output_c_modul(t_flag *flg)
 {
-	size_t	size;
+	int	size;
 
 	if (flg->size_flag)
 		size = ft_modul_wchar(flg);

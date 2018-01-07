@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-static size_t	ft_print_d_modul(t_flag *flg, size_t len, size_t len2)
+static int		ft_print_d_modul(t_flag *flg, int len, int len2)
 {
-	size_t	size;
+	int	size;
 
 	size = 0;
 	if (len < len2)
@@ -24,9 +24,9 @@ static size_t	ft_print_d_modul(t_flag *flg, size_t len, size_t len2)
 	return (size);
 }
 
-static size_t	ft_print_if_psm(t_flag *flg, size_t *len, int *flag)
+static int		ft_print_if_psm(t_flag *flg, int *len, int *flag)
 {
-	size_t	size;
+	int	size;
 
 	size = 0;
 	if (*flag)
@@ -44,10 +44,10 @@ static size_t	ft_print_if_psm(t_flag *flg, size_t *len, int *flag)
 	return (size);
 }
 
-static void		ft_base_d_modul_logic(t_flag *flg, size_t len,
-	size_t *size, int flag)
+static void		ft_base_d_modul_logic(t_flag *flg, int len,
+	int *size, int flag)
 {
-	size_t tmp;
+	int tmp;
 
 	if (flg->width)
 	{
@@ -73,9 +73,9 @@ static void		ft_base_d_modul_logic(t_flag *flg, size_t len,
 	}
 }
 
-static size_t	ft_logic_d_with_minus(t_flag *flg, size_t len)
+static int		ft_logic_d_with_minus(t_flag *flg, int len)
 {
-	size_t	size;
+	int	size;
 
 	size = 0;
 	if (flg->flag[F_PLUS] && flg->str[0] != '-')
@@ -95,10 +95,10 @@ static size_t	ft_logic_d_with_minus(t_flag *flg, size_t len)
 	return (size);
 }
 
-size_t			ft_output_d_modul(t_flag *flg)
+int				ft_output_d_modul(t_flag *flg)
 {
-	size_t	len;
-	size_t	size;
+	int	len;
+	int	size;
 
 	len = ft_strlen(flg->str);
 	size = 0;

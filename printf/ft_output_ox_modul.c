@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void		ft_percision_tricks(t_flag *flg, size_t *len)
+static void		ft_percision_tricks(t_flag *flg, int *len)
 {
 	if (flg->flag[F_DOT] && !flg->precision && flg->str[0] == '0'
 		&& !flg->flag[F_SHARP])
@@ -25,9 +25,9 @@ static void		ft_percision_tricks(t_flag *flg, size_t *len)
 		flg->flag[F_SHARP] = '\0';
 }
 
-static size_t	ft_write_sharp(t_flag *flg)
+static int		ft_write_sharp(t_flag *flg)
 {
-	size_t size;
+	int size;
 
 	size = 0;
 	if (FC == 'x')
@@ -39,9 +39,9 @@ static size_t	ft_write_sharp(t_flag *flg)
 	return (size);
 }
 
-static size_t	ft_base_ox_modul_logic(t_flag *flg, size_t len)
+static int		ft_base_ox_modul_logic(t_flag *flg, int len)
 {
-	size_t size;
+	int size;
 
 	size = 0;
 	if (flg->width && flg->flag[F_SHARP] && FC != 'o' && FC != 'O')
@@ -68,10 +68,10 @@ static size_t	ft_base_ox_modul_logic(t_flag *flg, size_t len)
 	return (size);
 }
 
-size_t			ft_output_ox_modul(t_flag *flg)
+int				ft_output_ox_modul(t_flag *flg)
 {
-	size_t	len;
-	size_t	size;
+	int	len;
+	int	size;
 
 	len = ft_strlen(flg->str);
 	ft_percision_tricks(flg, &len);

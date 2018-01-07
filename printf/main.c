@@ -17,7 +17,7 @@
 int	main(void)
 {
 	setlocale(LC_ALL, "");
-	printf("%d\n", printf("%lC", L'ÁM-^L´'));
-	printf("%d\n", ft_printf("%lC", L'ÁM-^L´'));
+	printf("%d\n", printf("%S\n", L"♡♥ღ"));
+	printf("%d\n", ft_printf("%S\n", L"♡♥ღ"));
 	return (0);
 }

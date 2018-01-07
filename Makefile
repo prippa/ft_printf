@@ -76,12 +76,12 @@ $(NAME): $(OBJ)
 
 $(DIR_OBJ)%.o: $(DIR_LIBFT)%.c $(INC_LIBFT)
 	@mkdir -p $(DIR_OBJ)
-	@$(CC) $(INC) -c -o $@ $<
+	@$(CC) $(FLAGS) $(INC) -c -o $@ $<
 	@echo "Linking" [ $< ]
 
 $(DIR_OBJ)%.o: $(DIR_FPF)%.c $(INC_FPF)
 	@mkdir -p $(DIR_OBJ)
-	@$(CC) $(INC) -c -o $@ $<
+	@$(CC) $(FLAGS) $(INC) -c -o $@ $<
 	@echo "Linking" [ $< ]
 
 clean:

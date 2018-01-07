@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-size_t	ft_print_width(int n, char c)
+int	ft_print_width(int n, char c)
 {
-	size_t len;
+	int len;
 
 	len = 0;
 	if (n > 0)

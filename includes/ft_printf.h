@@ -55,7 +55,7 @@ typedef	struct			s_printf
 {
 	char				*format;
 	int					i;
-	size_t				size;
+	int					size;
 	va_list				args;
 }						t_printf;
 
@@ -75,12 +75,12 @@ char					*ft_get_oux(t_printf *fpf, char c, int size_flag);
 char					*ft_get_di(t_printf *fpf, char c, int size_flag);
 char					*ft_get_p(t_printf *fpf);
 
-size_t					ft_print_width(int n, char c);
-size_t					ft_output_c_modul(t_flag *flg);
-size_t					ft_output_s_modul(t_flag *flg);
-size_t					ft_output_d_modul(t_flag *flg);
-size_t					ft_output_u_modul(t_flag *flg);
-size_t					ft_output_ox_modul(t_flag *flg);
-size_t					ft_output_p_modul(t_flag *flg);
+int						ft_print_width(int n, char c);
+int						ft_output_c_modul(t_flag *flg);
+int						ft_output_s_modul(t_flag *flg);
+int						ft_output_d_modul(t_flag *flg);
+int						ft_output_u_modul(t_flag *flg);
+int						ft_output_ox_modul(t_flag *flg);
+int						ft_output_p_modul(t_flag *flg);
 
 #endif

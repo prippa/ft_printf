@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static size_t	ft_rules(t_flag *flg, size_t len, size_t size, int print)
+static int	ft_rules(t_flag *flg, int len, int size, int print)
 {
 	if (!ft_strlen(flg->str))
 	{
@@ -33,11 +33,11 @@ static size_t	ft_rules(t_flag *flg, size_t len, size_t size, int print)
 	return (size);
 }
 
-size_t			ft_output_s_modul(t_flag *flg)
+int			ft_output_s_modul(t_flag *flg)
 {
-	size_t	len;
-	size_t	size;
-	int		print;
+	int	len;
+	int	size;
+	int	print;
 
 	len = ft_strlen(flg->str);
 	if (flg->precision < 0)
@@ -49,7 +49,7 @@ size_t			ft_output_s_modul(t_flag *flg)
 			while (flg->precision % 3 > 0)
 				flg->precision--;
 		}
-		if (len > flg->precision)
+		if (len > (int)flg->precision)
 			len = flg->precision;
 	}
 	else if (flg->flag[F_DOT])

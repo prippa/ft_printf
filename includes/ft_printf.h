@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <stdarg.h>
 # include <wchar.h>
+# include <inttypes.h>
 
 # define SF_H			1
 # define SF_HH			2
@@ -36,9 +37,9 @@
 # define PC fpf->format[fpf->i]
 # define PC_1 fpf->format[fpf->i + 1]
 # define FC flg->type
-# define SIZE_FLAGS(c) c == 'l' || c == 'h' || c == 'j' || c == 'z'
-# define FLAGS(c) c == '-' || c == '+' || c == ' ' || c == '#' || c == '0'
-# define BONUS_FLAGS(c) c == '*' || c == '.'
+# define SIZE_FLAGS(c) (c == 'l' || c == 'h' || c == 'j' || c == 'z')
+# define FLAGS(c) (c == '-' || c == '+' || c == ' ' || c == '#' || c == '0')
+# define BONUS_FLAGS(c) (c == '*' || c == '.')
 # define MAX(a, b) (a > b ? a : b)
 
 typedef	struct			s_flag

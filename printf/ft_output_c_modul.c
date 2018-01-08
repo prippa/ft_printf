@@ -31,7 +31,12 @@ static int	ft_modul_wchar(t_flag *flg)
 			size += ft_print_width(flg->width - len, ' ');
 	}
 	if (print)
-		size += write(1, flg->str, len);
+	{
+		if (flg->str[0])
+			size += write(1, flg->str, len);
+		else
+			size += write(1, &flg->str[0], 1);
+	}
 	return (size);
 }
 
@@ -60,7 +65,7 @@ int			ft_output_c_modul(t_flag *flg)
 {
 	int	size;
 
-	if (flg->size_flag)
+	if (flg->size_flag || FC == 'C')
 		size = ft_modul_wchar(flg);
 	else
 		size = ft_modul_char(flg);

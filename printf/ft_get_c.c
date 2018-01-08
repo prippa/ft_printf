@@ -17,9 +17,9 @@ char	*ft_get_c(t_printf *fpf, char c, int size_flag)
 	char	*str;
 	wchar_t	tmp[2];
 
-	if (size_flag == SF_L)
-		c = 'l';
-	if (c == 'c' || c == 'C')
+	if (size_flag == SF_L || c == 'C')
+		c = 'C';
+	if (c == 'c')
 	{
 		if (!(str = (char*)malloc(sizeof(char) * 2)))
 			return (NULL);

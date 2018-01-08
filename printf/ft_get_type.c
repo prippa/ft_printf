@@ -38,24 +38,22 @@ static void	ft_get_type_1(t_printf *fpf, t_flag *flg)
 
 void		ft_get_type(t_printf *fpf, t_flag *flg)
 {
-	if (PC == '%' && (FC = 'c'))
-		flg->str = ft_strdup("%");
-	else if (PC == 'p' && (FC = PC))
-		flg->str = ft_get_p(fpf);
-	else if (PC == 'c' && (FC = PC))
-		flg->str = ft_get_c(fpf, PC, flg->size_flag);
-	else if (PC == 'C' && (FC = PC))
-		flg->str = ft_get_c(fpf, PC, flg->size_flag);
-	else if (PC == 's' && (FC = PC))
-		flg->str = ft_get_s(fpf, PC, flg->size_flag);
-	else if (PC == 'S' && (FC = PC))
+	if (PC == 's' && (FC = PC))
 		flg->str = ft_get_s(fpf, PC, flg->size_flag);
 	else if (PC == 'd' && (FC = PC))
 		flg->str = ft_get_di(fpf, PC, flg->size_flag);
+	else if (PC == 'c' && (FC = PC))
+		flg->str = ft_get_c(fpf, PC, flg->size_flag);
+	else if (PC == 'S' && (FC = PC))
+		flg->str = ft_get_s(fpf, PC, flg->size_flag);
+	else if (PC == 'C' && (FC = PC))
+		flg->str = ft_get_c(fpf, PC, flg->size_flag);
 	else if (PC == 'D' && (FC = PC))
 		flg->str = ft_get_di(fpf, PC, flg->size_flag);
 	else if (PC == 'i' && (FC = PC))
 		flg->str = ft_get_di(fpf, PC, flg->size_flag);
+	else if (PC == 'p' && (FC = PC))
+		flg->str = ft_get_p(fpf);
 	else
 		ft_get_type_1(fpf, flg);
 }

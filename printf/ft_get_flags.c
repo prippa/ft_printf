@@ -45,7 +45,6 @@ static void		ft_get_width_or_precision(t_printf *fpf, t_flag *flg, char c)
 	char	wipi[20];
 	int		i;
 
-	ft_bzero(wipi, 20);
 	i = 0;
 	while (ft_isdigit(PC) && i < 20)
 	{
@@ -53,6 +52,7 @@ static void		ft_get_width_or_precision(t_printf *fpf, t_flag *flg, char c)
 		fpf->i++;
 		i++;
 	}
+	wipi[i] = '\0';
 	if (i)
 	{
 		if (c == 'w')
@@ -91,7 +91,7 @@ static void		ft_precision(t_printf *fpf, t_flag *flg)
 
 static void		ft_size_flag(t_printf *fpf, t_flag *flg)
 {
-	while (PC && SIZE_FLAGS(PC))
+	while (SIZE_FLAGS(PC))
 	{
 		if (PC == 'l' && PC_1 == 'l' && flg->size_flag < SF_LL
 			&& (flg->size_flag = SF_LL))
@@ -118,8 +118,7 @@ static void		ft_size_flag(t_printf *fpf, t_flag *flg)
 
 void			ft_get_flags(t_printf *fpf, t_flag *flg)
 {
-	while (PC && (SIZE_FLAGS(PC) || FLAGS(PC) || BONUS_FLAGS(PC)
-		|| ft_isdigit(PC)))
+	while (SIZE_FLAGS(PC) || FLAGS(PC) || BONUS_FLAGS(PC) || ft_isdigit(PC))
 	{
 		ft_flags(fpf, flg);
 		ft_get_width_or_precision(fpf, flg, 'w');

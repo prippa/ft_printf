@@ -66,10 +66,7 @@ static void		ft_lobi(t_printf *fpf)
 				fpf->i--;
 		}
 		else
-		{
-			ft_putchar(PC);
-			fpf->size++;
-		}
+			fpf->size += write(1, &PC, 1);
 		fpf->i++;
 	}
 }

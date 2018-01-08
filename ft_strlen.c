@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isuppercase.c                                   :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 15:05:37 by prippa            #+#    #+#             */
-/*   Updated: 2017/11/09 15:11:28 by prippa           ###   ########.fr       */
+/*   Created: 2017/10/25 19:25:06 by prippa            #+#    #+#             */
+/*   Updated: 2017/10/25 19:28:26 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isuppercase(int c)
+#include "ft_printf.h"
+
+size_t	ft_strlen(const char *s)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (1);
-	return (0);
+	size_t len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }

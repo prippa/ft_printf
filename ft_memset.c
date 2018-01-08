@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 13:38:55 by prippa            #+#    #+#             */
-/*   Updated: 2017/11/08 13:39:04 by prippa           ###   ########.fr       */
+/*   Created: 2017/10/26 18:10:15 by prippa            #+#    #+#             */
+/*   Updated: 2017/10/26 18:10:40 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+void	*ft_memset(void *b, int c, size_t len)
 {
-	t_list *link;
-	t_list *fresh;
+	char	*str;
+	size_t	i;
 
-	if (!lst)
-		return (NULL);
-	if ((fresh = ft_lstnew(lst->content, lst->content_size)) == NULL)
-		return (NULL);
-	fresh = f(lst);
-	link = fresh;
-	while (lst->next)
+	str = (char*)b;
+	i = 0;
+	while (i < len)
 	{
-		link->next = f(lst->next);
-		link = link->next;
-		lst = lst->next;
+		str[i] = c;
+		i++;
 	}
-	return (fresh);
+	return (b);
 }

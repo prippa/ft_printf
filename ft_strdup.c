@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmap.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 17:33:28 by prippa            #+#    #+#             */
-/*   Updated: 2017/11/03 17:33:30 by prippa           ###   ########.fr       */
+/*   Created: 2017/10/26 15:20:01 by prippa            #+#    #+#             */
+/*   Updated: 2017/11/05 13:33:13 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strmap(char const *s, char (*f)(char))
+char	*ft_strdup(const char *s1)
 {
 	size_t	i;
-	char	*fresh;
+	char	*str;
 
-	if (!s || !f)
-		return (NULL);
-	if ((fresh = ft_strnew(ft_strlen(s))) == NULL)
+	if ((str = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))) == NULL)
 		return (NULL);
 	i = 0;
-	while (s[i])
+	while (s1[i])
 	{
-		fresh[i] = (*f)(s[i]);
+		str[i] = s1[i];
 		i++;
 	}
-	return (fresh);
+	str[i] = '\0';
+	return (str);
 }

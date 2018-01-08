@@ -18,8 +18,10 @@ static int		ft_wcharlen(wchar_t wc)
 		return (1);
 	else if (wc <= 0x7ff)
 		return (2);
-	else
+	else if (wc <= 0xffff)
 		return (3);
+	else
+		return (4);
 }
 
 static size_t	ft_wstrlen(wchar_t *ws)

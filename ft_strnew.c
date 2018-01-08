@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isstrlowercase.c                                :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 15:21:46 by prippa            #+#    #+#             */
-/*   Updated: 2017/11/09 15:23:30 by prippa           ###   ########.fr       */
+/*   Created: 2017/11/03 16:43:39 by prippa            #+#    #+#             */
+/*   Updated: 2017/11/03 16:43:40 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_isstrlowercase(const char *str)
+char	*ft_strnew(size_t size)
 {
-	size_t i;
+	char *fresh;
 
-	if (str)
-	{
-		i = 0;
-		while (str[i])
-		{
-			if (ft_isalpha(str[i]) && !(ft_islowercase(str[i])))
-				return (0);
-			i++;
-		}
-		return (1);
-	}
-	return (0);
+	fresh = (char*)malloc(sizeof(char) * (size + 1));
+	if (fresh)
+		fresh = ft_memset(fresh, '\0', size + 1);
+	return (fresh);
 }

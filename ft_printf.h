@@ -13,7 +13,8 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
+# include <unistd.h>
+# include <stdlib.h>
 # include <stdarg.h>
 # include <wchar.h>
 # include <inttypes.h>
@@ -83,5 +84,15 @@ int						ft_output_d_modul(t_flag *flg);
 int						ft_output_u_modul(t_flag *flg);
 int						ft_output_ox_modul(t_flag *flg);
 int						ft_output_p_modul(t_flag *flg);
+
+int						ft_atoi(const char *str);
+int						ft_isdigit(int c);
+int						ft_isspace(int c);
+size_t					ft_strlen(const char *s);
+void					ft_bzero(void *s, size_t n);
+char					*ft_strdup(const char *s1);
+void					*ft_memset(void *b, int c, size_t len);
+char					*ft_strnew(size_t size);
+int						ft_isascii(int c);
 
 #endif

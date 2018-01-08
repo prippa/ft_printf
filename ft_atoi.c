@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 #define MAX_LONG_LONG 9223372036854775807
 
 int		ft_atoi(const char *str)

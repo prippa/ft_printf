@@ -89,8 +89,9 @@ char			*ft_wstr_to_str(wchar_t *ws)
 	if (!ws)
 		return (NULL);
 	len = ft_wbytelen(ws);
-	if (!(fresh = ft_strnew(len)))
+	if (!(fresh = (char *)malloc(sizeof(char) * len + 1)))
 		return (NULL);
+	fresh[len] = '\0';
 	len = 0;
 	i = 0;
 	while (ws[i])

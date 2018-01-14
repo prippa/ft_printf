@@ -12,62 +12,56 @@
 
 #include "ft_printf.h"
 
-static int	ft_modul_wchar(t_flag *flg)
+static void	ft_join(t_printf *fpf)
+{
+	if (fpf->str[0])
+		ft_strjoin(fpf, fpf->str, ft_strlen(fpf->str));
+	else
+		fpf->size += write(1, &fpf->str[0], 1);
+}
+
+static void	ft_modul_wchar(t_printf *fpf)
 {
 	int	len;
-	int	size;
 	int	print;
 
-	len = ft_strlen(flg->str);
+	len = ft_strlen(fpf->str);
 	print = 1;
-	size = 0;
-	if (flg->flag[F_MINUS] && !(print = 0))
-		size += write(1, flg->str, len);
-	if (flg->width)
+	if (fpf->flag[F_MINUS] && !(print = 0))
+		ft_join(fpf);
+	if (fpf->width)
 	{
-		if (flg->flag[F_ZERO] && !flg->flag[F_MINUS])
-			size += ft_print_width(flg->width - len, '0');
+		if (fpf->flag[F_ZERO] && !fpf->flag[F_MINUS])
+			ft_charjoin(fpf, fpf->width - len, '0');
 		else
-			size += ft_print_width(flg->width - len, ' ');
+			ft_charjoin(fpf, fpf->width - len, ' ');
 	}
 	if (print)
-	{
-		if (flg->str[0])
-			size += write(1, flg->str, len);
-		else
-			size += write(1, &flg->str[0], 1);
-	}
-	return (size);
+		ft_join(fpf);
 }
 
-static int	ft_modul_char(t_flag *flg)
+static void	ft_modul_char(t_printf *fpf)
 {
-	int	size;
 	int	print;
 
 	print = 1;
-	size = 0;
-	if (flg->flag[F_MINUS] && !(print = 0))
-		size += write(1, &flg->str[0], 1);
-	if (flg->width)
+	if (fpf->flag[F_MINUS] && !(print = 0))
+		ft_join(fpf);
+	if (fpf->width)
 	{
-		if (flg->flag[F_ZERO] && !flg->flag[F_MINUS])
-			size += ft_print_width(flg->width - 1, '0');
+		if (fpf->flag[F_ZERO] && !fpf->flag[F_MINUS])
+			ft_charjoin(fpf, fpf->width - 1, '0');
 		else
-			size += ft_print_width(flg->width - 1, ' ');
+			ft_charjoin(fpf, fpf->width - 1, ' ');
 	}
 	if (print)
-		size += write(1, &flg->str[0], 1);
-	return (size);
+		ft_join(fpf);
 }
 
-int			ft_output_c_modul(t_flag *flg)
+void		ft_output_c_modul(t_printf *fpf)
 {
-	int	size;
-
-	if (flg->size_flag || FC == 'C')
-		size = ft_modul_wchar(flg);
+	if (FC == 'C' || fpf->size_flag == SF_L)
+		ft_modul_wchar(fpf);
 	else
-		size = ft_modul_char(flg);
-	return (size);
+		ft_modul_char(fpf);
 }

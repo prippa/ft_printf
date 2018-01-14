@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*ft_get_s(t_printf *fpf, char c, int size_flag)
+char	*ft_get_s(t_printf *fpf)
 {
 	void	*data;
 	char	*str;
@@ -24,16 +24,14 @@ char	*ft_get_s(t_printf *fpf, char c, int size_flag)
 			return (NULL);
 		return (str);
 	}
-	if (size_flag == SF_L)
-		c = 'S';
-	if (c == 's')
+	else if (FC == 'S' || fpf->size_flag == SF_L)
 	{
-		if (!(str = ft_strdup((char *)data)))
+		if (!(str = ft_wstr_to_str((wchar_t *)data)))
 			return (NULL);
 	}
 	else
 	{
-		if (!(str = ft_wstr_to_str((wchar_t *)data)))
+		if (!(str = ft_strdup((char *)data)))
 			return (NULL);
 	}
 	return (str);

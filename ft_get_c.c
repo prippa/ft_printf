@@ -12,26 +12,24 @@
 
 #include "ft_printf.h"
 
-char	*ft_get_c(t_printf *fpf, char c, int size_flag)
+char	*ft_get_c(t_printf *fpf)
 {
 	char	*str;
 	wchar_t	tmp[2];
 
-	if (size_flag == SF_L || c == 'C')
-		c = 'l';
-	if (c == 'c')
-	{
-		if (!(str = (char*)malloc(sizeof(char) * 2)))
-			return (NULL);
-		str[0] = (char)va_arg(fpf->args, int);
-		str[1] = '\0';
-	}
-	else
+	if (FC == 'C' || fpf->size_flag == SF_L)
 	{
 		tmp[0] = (wchar_t)va_arg(fpf->args, int);
 		tmp[1] = '\0';
 		if (!(str = ft_wstr_to_str(tmp)))
 			return (NULL);
+	}
+	else
+	{
+		if (!(str = (char*)malloc(sizeof(char) * 2)))
+			return (NULL);
+		str[0] = (char)va_arg(fpf->args, int);
+		str[1] = '\0';
 	}
 	return (str);
 }

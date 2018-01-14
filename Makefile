@@ -12,16 +12,16 @@
 
 NAME		=	libftprintf.a
 
-CC			=	gcc -Wall -Werror -Wextra
+CC			=	gcc
 
-SRC_NAME	= 	ft_isascii.c ft_isdigit.c ft_isspace.c ft_atoi.c ft_strlen.c ft_bzero.c\
-				ft_strdup.c ft_memset.c ft_strnew.c\
-				ft_printf.c ft_itoa_base.c ft_itoa_lli.c ft_unicode.c\
-				ft_conv_sig_int.c ft_conv_unsig_int.c\
+FLAGS		=	-Wall -Werror -Wextra
+
+SRC_NAME	= 	ft_isascii.c ft_isdigit.c ft_isspace.c  ft_strlen.c ft_bzero.c\
+				ft_strdup.c ft_atoi.c ft_itoa.c ft_itoa_base.c\
+				ft_strjoin.c ft_charjoin.c\
+				ft_printf.c ft_unicode.c ft_conv_sig_int.c ft_conv_unsig_int.c\
 				ft_get_flags.c ft_get_type.c\
-				ft_get_p.c ft_get_oux.c\
-				ft_get_di.c ft_get_c.c ft_get_s.c\
-				ft_print_width.c\
+				ft_get_p.c ft_get_oux.c ft_get_di.c ft_get_c.c ft_get_s.c\
 				ft_output_c_modul.c ft_output_s_modul.c ft_output_d_modul.c\
 				ft_output_u_modul.c ft_output_ox_modul.c\
 				ft_output_p_modul.c
@@ -36,7 +36,7 @@ $(NAME): $(OBJ)
 	@echo "Compiling" [ $(NAME) ]
 
 %.o: %.c
-	@$(CC) -c -o $@ $< 
+	@$(CC) $(FLAGS) -c -o $@ $< 
 	@echo "Linking" [ $< ]
 
 clean:

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/20 17:49:17 by prippa            #+#    #+#             */
-/*   Updated: 2017/12/20 17:49:20 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/15 13:10:22 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/15 13:10:24 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ static void		ft_lobi(t_printf *fpf)
 int				ft_printf(const char *format, ...)
 {
 	t_printf	fpf;
+	int			len;
 
 	fpf.format = ft_strdup(format);
 	fpf.out_str = NULL;
@@ -106,10 +107,11 @@ int				ft_printf(const char *format, ...)
 	ft_lobi(&fpf);
 	va_end(fpf.args);
 	free(fpf.format);
+	len = 0;
 	if (fpf.out_str)
 	{
-		write(1, fpf.out_str, fpf.size);
+		len = write(1, fpf.out_str, ft_strlen(fpf.out_str));
 		free(fpf.out_str);
 	}
-	return (fpf.size);
+	return (len + fpf.size);
 }

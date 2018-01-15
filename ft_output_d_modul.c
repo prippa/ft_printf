@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/05 16:11:02 by prippa            #+#    #+#             */
-/*   Updated: 2018/01/05 16:11:03 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/15 13:08:50 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/15 13:08:53 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void		ft_logic_d_with_minus(t_printf *fpf, int len)
 		ft_charjoin(fpf, fpf->width - MAX(len, fpf->precision) - size, ' ');
 }
 
-void				ft_output_d_modul(t_printf *fpf)
+void			ft_output_d_modul(t_printf *fpf)
 {
 	int	len;
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/04 13:43:08 by prippa            #+#    #+#             */
-/*   Updated: 2018/01/04 13:43:10 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/15 13:06:18 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/15 13:06:28 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void		ft_get_type(t_printf *fpf)
 	else if (PC == 'i' && (FC = PC))
 		fpf->str = ft_get_di(fpf);
 	else if (PC == 'p' && (FC = PC))
-		fpf->str = ft_get_p(fpf);
+		fpf->str = ft_itoa_base(va_arg(fpf->args, unsigned long int), 16, 87);
 	else
 		ft_get_type_1(fpf);
 }

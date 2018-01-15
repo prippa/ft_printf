@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/07 11:10:10 by prippa            #+#    #+#             */
-/*   Updated: 2018/01/07 11:10:13 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/15 13:10:07 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/15 13:10:09 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_base_u_modul_logic(t_printf *fpf, int len)
 	ft_strjoin(fpf, fpf->str, len);
 }
 
-void			ft_output_u_modul(t_printf *fpf)
+void		ft_output_u_modul(t_printf *fpf)
 {
 	int	len;
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/05 12:04:55 by prippa            #+#    #+#             */
-/*   Updated: 2018/01/05 12:04:58 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/15 13:08:34 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/15 13:08:37 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,15 @@ static void	ft_join(t_printf *fpf)
 	if (fpf->str[0])
 		ft_strjoin(fpf, fpf->str, ft_strlen(fpf->str));
 	else
+	{
+		if (fpf->out_str)
+		{
+			fpf->size += write(1, fpf->out_str, ft_strlen(fpf->out_str));
+			free(fpf->out_str);
+			fpf->out_str = NULL;
+		}
 		fpf->size += write(1, &fpf->str[0], 1);
+	}
 }
 
 static void	ft_modul_wchar(t_printf *fpf)

@@ -21,7 +21,7 @@ SRC_NAME	= 	ft_isascii.c ft_isdigit.c ft_isspace.c  ft_strlen.c ft_bzero.c\
 				ft_strjoin.c ft_charjoin.c\
 				ft_printf.c ft_unicode.c ft_conv_sig_int.c ft_conv_unsig_int.c\
 				ft_get_flags.c ft_get_type.c\
-				ft_get_p.c ft_get_oux.c ft_get_di.c ft_get_c.c ft_get_s.c\
+				ft_get_oux.c ft_get_di.c ft_get_c.c ft_get_s.c\
 				ft_output_c_modul.c ft_output_s_modul.c ft_output_d_modul.c\
 				ft_output_u_modul.c ft_output_ox_modul.c\
 				ft_output_p_modul.c

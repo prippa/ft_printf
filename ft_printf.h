@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/20 17:52:26 by prippa            #+#    #+#             */
-/*   Updated: 2017/12/20 17:52:28 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/15 13:10:42 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/15 13:10:45 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char					*ft_get_c(t_printf *fpf);
 char					*ft_get_s(t_printf *fpf);
 char					*ft_get_oux(t_printf *fpf);
 char					*ft_get_di(t_printf *fpf);
-char					*ft_get_p(t_printf *fpf);
 
 void					ft_output_c_modul(t_printf *fpf);
 void					ft_output_s_modul(t_printf *fpf);

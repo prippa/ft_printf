@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_di.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 13:01:12 by prippa            #+#    #+#             */
-/*   Updated: 2018/01/15 13:01:20 by prippa           ###   ########.fr       */
+/*   Created: 2017/10/26 15:20:01 by prippa            #+#    #+#             */
+/*   Updated: 2017/11/05 13:33:13 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*ft_get_di(t_printf *fpf)
+char	*ft_strdup(const char *s1)
 {
-	char	*str;
+	char		*new_obj;
 
-	if (FC == 'd' || FC == 'i')
-		str = ft_itoa(ft_conv_sig_int(fpf));
-	else
-	{
-		fpf->size_flag = SF_L;
-		str = ft_itoa(ft_conv_sig_int(fpf));
-	}
-	return (str);
+	if (!(new_obj = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
+		return (NULL);
+	ft_strcpy(new_obj, s1);
+	return (new_obj);
 }

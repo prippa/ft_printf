@@ -1,16 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 13:07:50 by prippa            #+#    #+#             */
-/*   Updated: 2018/01/15 13:07:56 by prippa           ###   ########.fr       */
+/*   Created: 2017/11/06 13:59:31 by prippa            #+#    #+#             */
+/*   Updated: 2017/11/06 13:59:40 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+
+char	*ft_itoa_max(long long int n)
+{
+	char	*new_obj;
+	short	size;
+
+	size = ft_nbrlen(n);
+	size += (n < 0 ? 1 : 0);
+	if (!(new_obj = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	new_obj[size] = 0;
+	new_obj[0] = (n < 0 ? '-' : '0');
+	while (n)
+	{
+		new_obj[--size] = ABS((n % 10)) + '0';
+		n /= 10;
+	}
+	return (new_obj);
+}
 
 char	*ft_itoa_base(unsigned long long int num, int base, int letter)
 {
@@ -21,7 +40,7 @@ char	*ft_itoa_base(unsigned long long int num, int base, int letter)
 
 	if (base < 2 && base > 16)
 		return (NULL);
-	buf[64] = '\0';
+	buf[64] = 0;
 	if (num == 0)
 		return (ft_strdup("0"));
 	tmp = num;
@@ -34,7 +53,7 @@ char	*ft_itoa_base(unsigned long long int num, int base, int letter)
 		if (base > 10 && op > 9)
 			buf[i] = op + letter;
 		else
-			buf[i] = op + 48;
+			buf[i] = op + '0';
 	}
 	return (ft_strdup(buf + i));
 }

@@ -19,17 +19,17 @@ static void	ft_rules(t_printf *fpf, int len, int print)
 		len = 0;
 		print = 0;
 	}
-	if (print && fpf->flag[F_MINUS] && !(print = 0))
-		ft_strjoin(fpf, fpf->str, len);
+	if (print && fpf->f[F_MINUS] && !(print = 0))
+		fpf_cat_str(fpf, fpf->str);
 	if (fpf->width)
 	{
-		if (fpf->flag[F_ZERO] && !fpf->flag[F_MINUS])
-			ft_charjoin(fpf, fpf->width - len, '0');
+		if (fpf->f[F_ZERO] && !fpf->f[F_MINUS])
+			fpf_charncat(fpf, fpf->width - len, '0');
 		else
-			ft_charjoin(fpf, fpf->width - len, ' ');
+			fpf_charncat(fpf, fpf->width - len, ' ');
 	}
 	if (print)
-		ft_strjoin(fpf, fpf->str, len);
+		fpf_cat_str(fpf, fpf->str);
 }
 
 void		ft_output_s_modul(t_printf *fpf)
@@ -42,7 +42,7 @@ void		ft_output_s_modul(t_printf *fpf)
 		fpf->precision = 0;
 	else if (fpf->precision)
 	{
-		if (FC == 'S' && !ft_isascii(fpf->str[fpf->precision - 1]))
+		if (fpf->type == 'S' && !ft_isascii(fpf->str[fpf->precision - 1]))
 		{
 			while (fpf->precision % 3 > 0)
 				fpf->precision--;
@@ -50,7 +50,7 @@ void		ft_output_s_modul(t_printf *fpf)
 		if (len > fpf->precision)
 			len = fpf->precision;
 	}
-	else if (fpf->flag[F_DOT])
+	else if (fpf->f[F_DOT])
 		len = fpf->precision;
 	print = 1;
 	ft_rules(fpf, len, print);

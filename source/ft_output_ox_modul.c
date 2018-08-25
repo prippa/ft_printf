@@ -14,32 +14,32 @@
 
 static void		ft_percision_tricks(t_printf *fpf, int *len)
 {
-	if (fpf->flag[F_DOT] && !fpf->precision && fpf->str[0] == '0'
-		&& !fpf->flag[F_SHARP])
+	if (fpf->f[F_DOT] && !fpf->precision && fpf->str[0] == '0'
+		&& !fpf->f[F_SHARP])
 		*len = 0;
-	if (fpf->flag[F_DOT] && !fpf->precision && fpf->str[0] == '0'
-		&& fpf->flag[F_SHARP] && (FC == 'x' || FC == 'X'))
+	if (fpf->f[F_DOT] && !fpf->precision && fpf->str[0] == '0'
+		&& fpf->f[F_SHARP] && (fpf->type == 'x' || fpf->type == 'X'))
 		*len = 0;
-	if (fpf->flag[F_DOT] && fpf->precision
-		&& fpf->flag[F_SHARP] && (FC == 'o' || FC == 'O'))
-		fpf->flag[F_SHARP] = '\0';
+	if (fpf->f[F_DOT] && fpf->precision
+		&& fpf->f[F_SHARP] && (fpf->type == 'o' || fpf->type == 'O'))
+		fpf->f[F_SHARP] = '\0';
 }
 
 static int		ft_write_sharp(t_printf *fpf)
 {
-	if (FC == 'x')
+	if (fpf->type == 'x')
 	{
-		ft_strjoin(fpf, "0x", 2);
+		fpf_cat_str(fpf, "0x");
 		return (2);
 	}
-	else if (FC == 'X')
+	else if (fpf->type == 'X')
 	{
-		ft_strjoin(fpf, "0X", 2);
+		fpf_cat_str(fpf, "0X");
 		return (2);
 	}
-	else if (FC == 'o' || FC == 'O')
+	else if (fpf->type == 'o' || fpf->type == 'O')
 	{
-		ft_strjoin(fpf, "0", 1);
+		fpf_cat_char(fpf, '0');
 		return (1);
 	}
 	return (0);
@@ -47,27 +47,29 @@ static int		ft_write_sharp(t_printf *fpf)
 
 static void		ft_base_ox_modul_logic(t_printf *fpf, int len)
 {
-	if (fpf->width && fpf->flag[F_SHARP] && FC != 'o' && FC != 'O')
+	if (fpf->width && fpf->f[F_SHARP] && fpf->type != 'o'
+		&& fpf->type != 'O')
 		fpf->width -= 2;
-	else if (fpf->width && fpf->flag[F_SHARP] && (FC == 'o' || FC == 'O'))
+	else if (fpf->width && fpf->f[F_SHARP] && (fpf->type == 'o'
+		|| fpf->type == 'O'))
 		fpf->width--;
 	if (fpf->width)
 	{
-		if (fpf->flag[F_ZERO] && !fpf->precision)
+		if (fpf->f[F_ZERO] && !fpf->precision)
 		{
-			if (fpf->flag[F_SHARP])
+			if (fpf->f[F_SHARP])
 				ft_write_sharp(fpf);
-			ft_charjoin(fpf, fpf->width - len, '0');
+			fpf_charncat(fpf, fpf->width - len, '0');
 		}
 		else
-			ft_charjoin(fpf, fpf->width - MAX(len, fpf->precision), ' ');
+			fpf_charncat(fpf, fpf->width - MAX(len, fpf->precision), ' ');
 	}
-	if (fpf->flag[F_SHARP] && fpf->str[0] != '0'
-		&& (!fpf->flag[F_ZERO] || !fpf->width))
+	if (fpf->f[F_SHARP] && fpf->str[0] != '0'
+		&& (!fpf->f[F_ZERO] || !fpf->width))
 		ft_write_sharp(fpf);
 	if (fpf->precision)
-		ft_charjoin(fpf, fpf->precision - len, '0');
-	ft_strjoin(fpf, fpf->str, len);
+		fpf_charncat(fpf, fpf->precision - len, '0');
+	fpf_cat_str(fpf, fpf->str);
 }
 
 void			ft_output_ox_modul(t_printf *fpf)
@@ -78,15 +80,16 @@ void			ft_output_ox_modul(t_printf *fpf)
 	len = ft_strlen(fpf->str);
 	ft_percision_tricks(fpf, &len);
 	size = 0;
-	if (fpf->flag[F_MINUS])
+	if (fpf->f[F_MINUS])
 	{
-		if (fpf->flag[F_SHARP] && len)
+		if (fpf->f[F_SHARP] && len)
 			size += ft_write_sharp(fpf);
 		if (fpf->precision)
-			ft_charjoin(fpf, fpf->precision - len, '0');
-		ft_strjoin(fpf, fpf->str, len);
+			fpf_charncat(fpf, fpf->precision - len, '0');
+		fpf_cat_str(fpf, fpf->str);
 		if (fpf->width)
-			ft_charjoin(fpf, fpf->width - MAX(len, fpf->precision) - size, ' ');
+			fpf_charncat(fpf,
+			fpf->width - MAX(len, fpf->precision) - size, ' ');
 	}
 	else
 		ft_base_ox_modul_logic(fpf, len);

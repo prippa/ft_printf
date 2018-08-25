@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 13:07:03 by prippa            #+#    #+#             */
-/*   Updated: 2018/01/15 13:07:05 by prippa           ###   ########.fr       */
+/*   Created: 2017/10/26 13:39:53 by prippa            #+#    #+#             */
+/*   Updated: 2017/10/26 13:39:55 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isdigit(int c)
+#include "libft.h"
+
+char	*ft_strcpy(char *dst, const char *src)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	char *tmp;
+
+	tmp = dst;
+	while ((*tmp++ = *src++))
+		;
+	return (dst);
 }

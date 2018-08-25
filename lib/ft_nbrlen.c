@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 13:11:00 by prippa            #+#    #+#             */
-/*   Updated: 2018/01/15 13:11:03 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/28 15:43:17 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/28 15:45:24 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*ft_strdup(const char *s1)
+short	ft_nbrlen(long long int nb)
 {
-	size_t	i;
-	char	*str;
+	short i;
 
-	if ((str = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))) == NULL)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	i = 1;
+	while ((nb /= 10))
+		++i;
+	return (i);
 }

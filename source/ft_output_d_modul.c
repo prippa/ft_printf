@@ -15,24 +15,24 @@
 static void		ft_print_d_modul(t_printf *fpf, int len, int len2)
 {
 	if (len < len2)
-		ft_strjoin(fpf, fpf->str + 1, len);
+		fpf_cat_str(fpf, fpf->str + 1);
 	else
-		ft_strjoin(fpf, fpf->str, len);
+		fpf_cat_str(fpf, fpf->str);
 }
 
 static void		ft_print_if_psm(t_printf *fpf, int *len, int *flag)
 {
 	if (*flag)
 	{
-		if (fpf->flag[F_PLUS] && fpf->str[0] != '-' && !(*flag = 0))
-			ft_charjoin(fpf, 1, '+');
+		if (fpf->f[F_PLUS] && fpf->str[0] != '-' && !(*flag = 0))
+			fpf_cat_char(fpf, '+');
 		else if (fpf->str[0] == '-' && !(*flag = 0))
 		{
-			ft_charjoin(fpf, 1, '-');
+			fpf_cat_char(fpf, '-');
 			*len -= 1;
 		}
-		else if (fpf->flag[F_SPACE] && !(*flag = 0))
-			ft_charjoin(fpf, 1, ' ');
+		else if (fpf->f[F_SPACE] && !(*flag = 0))
+			fpf_cat_char(fpf, ' ');
 	}
 }
 
@@ -42,19 +42,19 @@ static void		ft_base_d_modul_logic(t_printf *fpf, int len, int flag)
 
 	if (fpf->width)
 	{
-		if (fpf->flag[F_ZERO] && !fpf->precision)
+		if (fpf->f[F_ZERO] && !fpf->precision)
 		{
 			tmp = len;
 			ft_print_if_psm(fpf, &len, &flag);
-			ft_charjoin(fpf, fpf->width - tmp, '0');
+			fpf_charncat(fpf, fpf->width - tmp, '0');
 		}
 		else
-			ft_charjoin(fpf, fpf->width - MAX(len, fpf->precision), ' ');
+			fpf_charncat(fpf, fpf->width - MAX(len, fpf->precision), ' ');
 	}
 	if (fpf->precision)
 	{
 		ft_print_if_psm(fpf, &len, &flag);
-		ft_charjoin(fpf, fpf->precision - len, '0');
+		fpf_charncat(fpf, fpf->precision - len, '0');
 		ft_print_d_modul(fpf, len, ft_strlen(fpf->str));
 	}
 	else
@@ -69,20 +69,20 @@ static void		ft_logic_d_with_minus(t_printf *fpf, int len)
 	int	size;
 
 	size = 0;
-	if (fpf->flag[F_PLUS] && fpf->str[0] != '-' && (size += 1))
-		ft_charjoin(fpf, 1, '+');
+	if (fpf->f[F_PLUS] && fpf->str[0] != '-' && (size += 1))
+		fpf_cat_char(fpf, '+');
 	else if (fpf->str[0] == '-' && (size += 1))
 	{
-		ft_charjoin(fpf, 1, '-');
+		fpf_cat_char(fpf, '-');
 		len--;
 	}
-	else if (fpf->flag[F_SPACE] && (size += 1))
-		ft_charjoin(fpf, 1, ' ');
+	else if (fpf->f[F_SPACE] && (size += 1))
+		fpf_cat_char(fpf, ' ');
 	if (fpf->precision)
-		ft_charjoin(fpf, fpf->precision - len, '0');
+		fpf_charncat(fpf, fpf->precision - len, '0');
 	ft_print_d_modul(fpf, len, ft_strlen(fpf->str));
 	if (fpf->width)
-		ft_charjoin(fpf, fpf->width - MAX(len, fpf->precision) - size, ' ');
+		fpf_charncat(fpf, fpf->width - MAX(len, fpf->precision) - size, ' ');
 }
 
 void			ft_output_d_modul(t_printf *fpf)
@@ -92,19 +92,19 @@ void			ft_output_d_modul(t_printf *fpf)
 	len = ft_strlen(fpf->str);
 	if (fpf->precision < 0 && (fpf->precision = fpf->width))
 		fpf->width = 0;
-	if (fpf->flag[F_DOT] && fpf->flag[F_ZERO] && !fpf->precision)
-		fpf->flag[F_ZERO] = '\0';
-	if (fpf->str[0] == '0' && fpf->flag[F_DOT])
+	if (fpf->f[F_DOT] && fpf->f[F_ZERO] && !fpf->precision)
+		fpf->f[F_ZERO] = '\0';
+	if (fpf->str[0] == '0' && fpf->f[F_DOT])
 		len = 0;
-	if (fpf->flag[F_MINUS])
+	if (fpf->f[F_MINUS])
 		ft_logic_d_with_minus(fpf, len);
 	else
 	{
-		if (fpf->width && !fpf->flag[F_MINUS]
-		&& ((fpf->flag[F_PLUS] && fpf->str[0] != '-')
-		|| (fpf->flag[F_SPACE] && fpf->str[0] != '-')
+		if (fpf->width && !fpf->f[F_MINUS]
+		&& ((fpf->f[F_PLUS] && fpf->str[0] != '-')
+		|| (fpf->f[F_SPACE] && fpf->str[0] != '-')
 		|| (fpf->precision == len && fpf->str[0] == '-')
-		|| (fpf->str[0] == '-' && !fpf->flag[F_ZERO]
+		|| (fpf->str[0] == '-' && !fpf->f[F_ZERO]
 		&& fpf->precision && fpf->precision > len)))
 			fpf->width--;
 		ft_base_d_modul_logic(fpf, len, 1);

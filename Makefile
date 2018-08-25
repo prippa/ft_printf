@@ -11,39 +11,64 @@
 # **************************************************************************** #
 
 NAME		=	libftprintf.a
+# FLAGS		=	-Wall -Werror -Wextra
+COMPILER	=	gcc -g
 
-CC			=	gcc
+DIR_INC		=	./includes/
+DIR_SRC		=	./source/
+DIR_LIB		=	./lib/
+DIR_OBJ		= 	./obj/
 
-FLAGS		=	-Wall -Werror -Wextra
+#-------------------------- Header files ---------------------------------------
+HEAD_FPF	=	ft_printf.h
+HEAD_LIB	=	libft.h
 
-SRC_NAME	= 	ft_isascii.c ft_isdigit.c ft_isspace.c  ft_strlen.c ft_bzero.c\
-				ft_strdup.c ft_atoi.c ft_itoa.c ft_itoa_base.c\
-				ft_strjoin.c ft_charjoin.c\
-				ft_printf.c ft_unicode.c ft_conv_sig_int.c ft_conv_unsig_int.c\
-				ft_get_flags.c ft_get_type.c\
-				ft_get_oux.c ft_get_di.c ft_get_c.c ft_get_s.c\
+#-------------------------- FPF Source files -----------------------------------
+SRC_FPF		=	ft_printf.c fpf_cat_data.c fpf_parser.c fpf_trash.c\
+				fpf_parser_get_type.c fpf_conversions.c fpf_unicode.c\
 				ft_output_c_modul.c ft_output_s_modul.c ft_output_d_modul.c\
-				ft_output_u_modul.c ft_output_ox_modul.c\
-				ft_output_p_modul.c
+				ft_output_u_modul.c ft_output_ox_modul.c ft_output_p_modul.c\
 
-OBJ 		= 	$(SRC_NAME:.c=.o)
 
-all: $(NAME)
+#-------------------------- LIB Source files -----------------------------------
+SRC_LIB		=	ft_strcpy.c ft_strlen.c ft_strdup.c ft_nbrlen.c\
+				ft_isdigit.c ft_bzero.c ft_isascii.c ft_itoa.c\
 
+INC_FPF 	= 	$(addprefix $(DIR_INC), $(HEAD_FPF))
+INC_LIB 	= 	$(addprefix $(DIR_INC), $(HEAD_LIB))
+
+OBJ 		= 	$(addprefix $(DIR_OBJ), $(SRC_LIB:.c=.o) $(SRC_FPF:.c=.o))
+INC 		= 	$(addprefix -I, $(DIR_INC))
+
+all: obj $(NAME)
+
+obj:
+	@mkdir -p $(DIR_OBJ)
+
+#-------------------------- Compil Block ---------------------------------------
 $(NAME): $(OBJ)
 	@ar rc $@ $^
 	@ranlib $@
 	@echo "Compiling" [ $(NAME) ]
 
-%.o: %.c
-	@$(CC) $(FLAGS) -c -o $@ $< 
+#-------------------------- Link Block -----------------------------------------
+#source
+$(DIR_OBJ)%.o: $(DIR_SRC)%.c $(INC_FPF)
+	@$(COMPILER) $(FLAGS) $(INC) -c -o $@ $<
+	@echo "Linking" [ $< ]
+
+#lib
+$(DIR_OBJ)%.o: $(DIR_LIB)%.c $(INC_LIB)
+	@$(COMPILER) $(FLAGS) $(INC) -c -o $@ $<
 	@echo "Linking" [ $< ]
 
 clean:
-	@rm -rf $(OBJ)
-	@echo "Cleaning .o files"
+	@rm -rf $(DIR_OBJ)
+	@echo "Clean [obj files]"
 
-fclean: clean
+fclean:
+	@rm -rf $(DIR_OBJ)
+	@echo "Clean [ obj files ]"
 	@rm -f $(NAME)
 	@echo "Clean" [ $(NAME) ]
 

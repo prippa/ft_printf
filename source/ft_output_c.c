@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_c_modul.c                                :+:      :+:    :+:   */
+/*   ft_output_c.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -20,7 +20,7 @@ static void	ft_join(t_printf *fpf)
 		fpf_cat_char(fpf, 0);
 }
 
-static void	ft_modul_wchar(t_printf *fpf)
+static void	ft_wchar(t_printf *fpf)
 {
 	int	len;
 	int	print;
@@ -32,15 +32,15 @@ static void	ft_modul_wchar(t_printf *fpf)
 	if (fpf->width)
 	{
 		if (fpf->f[F_ZERO] && !fpf->f[F_MINUS])
-			fpf_charncat(fpf, fpf->width - len, '0');
+			fpf_cat_char_len(fpf, fpf->width - len, '0');
 		else
-			fpf_charncat(fpf, fpf->width - len, ' ');
+			fpf_cat_char_len(fpf, fpf->width - len, ' ');
 	}
 	if (print)
 		ft_join(fpf);
 }
 
-static void	ft_modul_char(t_printf *fpf)
+static void	ft_char(t_printf *fpf)
 {
 	int	print;
 
@@ -50,18 +50,18 @@ static void	ft_modul_char(t_printf *fpf)
 	if (fpf->width)
 	{
 		if (fpf->f[F_ZERO] && !fpf->f[F_MINUS])
-			fpf_charncat(fpf, fpf->width - 1, '0');
+			fpf_cat_char_len(fpf, fpf->width - 1, '0');
 		else
-			fpf_charncat(fpf, fpf->width - 1, ' ');
+			fpf_cat_char_len(fpf, fpf->width - 1, ' ');
 	}
 	if (print)
 		ft_join(fpf);
 }
 
-void		ft_output_c_modul(t_printf *fpf)
+void		ft_output_c(t_printf *fpf)
 {
 	if (fpf->type == 'C' || fpf->size_flag == SF_L)
-		ft_modul_wchar(fpf);
+		ft_wchar(fpf);
 	else
-		ft_modul_char(fpf);
+		ft_char(fpf);
 }

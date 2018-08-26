@@ -48,8 +48,7 @@ static void	fpf_get_precision(t_printf *fpf)
 		++fpf->format;
 		if (*fpf->format == '*')
 		{
-			if ((fpf->precision = (int)va_arg(fpf->args, int)) < 0)
-				fpf->precision = ABS(fpf->precision);
+			fpf->precision = (int)va_arg(fpf->args, int);
 			++fpf->format;
 		}
 		else
@@ -106,20 +105,4 @@ void		fpf_parser(t_printf *fpf)
 	fpf_get_precision(fpf);
 	fpf_get_size_flag(fpf);
 	fpf_get_type(fpf);
-	// TEST
-		// printf("F_MINUS  - %d\n", (fpf->f[F_MINUS] ? 1 : 0));
-		// printf("F_PLUS   - %d\n", (fpf->f[F_PLUS] ? 1 : 0));
-		// printf("F_SPACE  - %d\n", (fpf->f[F_SPACE] ? 1 : 0));
-		// printf("F_SHARP  - %d\n", (fpf->f[F_SHARP] ? 1 : 0));
-		// printf("F_ZERO   - %d\n", (fpf->f[F_ZERO] ? 1 : 0));
-		// printf("F_DOT    - %d\n", (fpf->f[F_DOT] ? 1 : 0));
-		// printf("F_COLOR  - %d\n\n", (fpf->f[F_COLOR] ? 1 : 0));
-		
-		// printf("width     - %d\n", fpf->width);
-		// printf("precision - %d\n", fpf->precision);
-		// printf("size_flag - %d\n", fpf->size_flag);
-		// printf("color     - %d\n", fpf->color);
-		// printf("type      - %c\n", fpf->type);
-		// printf("str       - %s\n", fpf->str);
-	//
 }

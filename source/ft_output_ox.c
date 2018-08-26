@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_ox_modul.c                               :+:      :+:    :+:   */
+/*   ft_output_ox.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -45,7 +45,7 @@ static int		ft_write_sharp(t_printf *fpf)
 	return (0);
 }
 
-static void		ft_base_ox_modul_logic(t_printf *fpf, int len)
+static void		ft_base_ox_logic(t_printf *fpf, int len)
 {
 	if (fpf->width && fpf->f[F_SHARP] && fpf->type != 'o'
 		&& fpf->type != 'O')
@@ -59,20 +59,20 @@ static void		ft_base_ox_modul_logic(t_printf *fpf, int len)
 		{
 			if (fpf->f[F_SHARP])
 				ft_write_sharp(fpf);
-			fpf_charncat(fpf, fpf->width - len, '0');
+			fpf_cat_char_len(fpf, fpf->width - len, '0');
 		}
 		else
-			fpf_charncat(fpf, fpf->width - MAX(len, fpf->precision), ' ');
+			fpf_cat_char_len(fpf, fpf->width - MAX(len, fpf->precision), ' ');
 	}
 	if (fpf->f[F_SHARP] && fpf->str[0] != '0'
 		&& (!fpf->f[F_ZERO] || !fpf->width))
 		ft_write_sharp(fpf);
 	if (fpf->precision)
-		fpf_charncat(fpf, fpf->precision - len, '0');
-	fpf_cat_str(fpf, fpf->str);
+		fpf_cat_char_len(fpf, fpf->precision - len, '0');
+	fpf_cat_str_len(fpf, fpf->str, len);
 }
 
-void			ft_output_ox_modul(t_printf *fpf)
+void			ft_output_ox(t_printf *fpf)
 {
 	int	len;
 	int	size;
@@ -85,12 +85,12 @@ void			ft_output_ox_modul(t_printf *fpf)
 		if (fpf->f[F_SHARP] && len)
 			size += ft_write_sharp(fpf);
 		if (fpf->precision)
-			fpf_charncat(fpf, fpf->precision - len, '0');
-		fpf_cat_str(fpf, fpf->str);
+			fpf_cat_char_len(fpf, fpf->precision - len, '0');
+		fpf_cat_str_len(fpf, fpf->str, len);
 		if (fpf->width)
-			fpf_charncat(fpf,
+			fpf_cat_char_len(fpf,
 			fpf->width - MAX(len, fpf->precision) - size, ' ');
 	}
 	else
-		ft_base_ox_modul_logic(fpf, len);
+		ft_base_ox_logic(fpf, len);
 }

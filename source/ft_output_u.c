@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_u_modul.c                                :+:      :+:    :+:   */
+/*   ft_output_u.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,21 +12,21 @@
 
 #include "ft_printf.h"
 
-static void	ft_base_u_modul_logic(t_printf *fpf, int len)
+static void	ft_base_u_logic(t_printf *fpf, int len)
 {
 	if (fpf->width)
 	{
 		if (fpf->f[F_ZERO] && !fpf->precision)
-			fpf_charncat(fpf, fpf->width - len, '0');
+			fpf_cat_char_len(fpf, fpf->width - len, '0');
 		else
-			fpf_charncat(fpf, fpf->width - MAX(len, fpf->precision), ' ');
+			fpf_cat_char_len(fpf, fpf->width - MAX(len, fpf->precision), ' ');
 	}
 	if (fpf->precision)
-		fpf_charncat(fpf, fpf->precision - len, '0');
-	fpf_cat_str(fpf, fpf->str);
+		fpf_cat_char_len(fpf, fpf->precision - len, '0');
+	fpf_cat_str_len(fpf, fpf->str, len);
 }
 
-void		ft_output_u_modul(t_printf *fpf)
+void		ft_output_u(t_printf *fpf)
 {
 	int	len;
 
@@ -36,11 +36,11 @@ void		ft_output_u_modul(t_printf *fpf)
 	if (fpf->f[F_MINUS])
 	{
 		if (fpf->precision)
-			fpf_charncat(fpf, fpf->precision - len, '0');
-		fpf_cat_str(fpf, fpf->str);
+			fpf_cat_char_len(fpf, fpf->precision - len, '0');
+		fpf_cat_str_len(fpf, fpf->str, len);
 		if (fpf->width)
-			fpf_charncat(fpf, fpf->width - MAX(len, fpf->precision), ' ');
+			fpf_cat_char_len(fpf, fpf->width - MAX(len, fpf->precision), ' ');
 	}
 	else
-		ft_base_u_modul_logic(fpf, len);
+		ft_base_u_logic(fpf, len);
 }

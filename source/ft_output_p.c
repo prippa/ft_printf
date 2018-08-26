@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_p_modul.c                                :+:      :+:    :+:   */
+/*   ft_output_p.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void		ft_base_p_modul_logic(t_printf *fpf, int len)
+static void		ft_base_p_logic(t_printf *fpf, int len)
 {
 	int	flag;
 
@@ -24,19 +24,19 @@ static void		ft_base_p_modul_logic(t_printf *fpf, int len)
 		{
 			flag = 0;
 			fpf_cat_str(fpf, "0x");
-			fpf_charncat(fpf, fpf->width - len, '0');
+			fpf_cat_char_len(fpf, fpf->width - len, '0');
 		}
 		else
-			fpf_charncat(fpf, fpf->width - MAX(len, fpf->precision), ' ');
+			fpf_cat_char_len(fpf, fpf->width - MAX(len, fpf->precision), ' ');
 	}
 	if (flag)
 		fpf_cat_str(fpf, "0x");
 	if (fpf->precision)
-		fpf_charncat(fpf, fpf->precision - len, '0');
-	fpf_cat_str(fpf, fpf->str);
+		fpf_cat_char_len(fpf, fpf->precision - len, '0');
+	fpf_cat_str_len(fpf, fpf->str, len);
 }
 
-void			ft_output_p_modul(t_printf *fpf)
+void			ft_output_p(t_printf *fpf)
 {
 	int	len;
 
@@ -47,11 +47,11 @@ void			ft_output_p_modul(t_printf *fpf)
 	{
 		fpf_cat_str(fpf, "0x");
 		if (fpf->precision)
-			fpf_charncat(fpf, fpf->precision - len, '0');
-		fpf_cat_str(fpf, fpf->str);
+			fpf_cat_char_len(fpf, fpf->precision - len, '0');
+		fpf_cat_str_len(fpf, fpf->str, len);
 		if (fpf->width)
-			fpf_charncat(fpf, fpf->width - MAX(len, fpf->precision) - 2, ' ');
+			fpf_cat_char_len(fpf, fpf->width - MAX(len, fpf->precision) - 2, ' ');
 	}
 	else
-		ft_base_p_modul_logic(fpf, len);
+		ft_base_p_logic(fpf, len);
 }

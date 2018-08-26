@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_s_modul.c                                :+:      :+:    :+:   */
+/*   ft_output_s.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -20,19 +20,19 @@ static void	ft_rules(t_printf *fpf, int len, int print)
 		print = 0;
 	}
 	if (print && fpf->f[F_MINUS] && !(print = 0))
-		fpf_cat_str(fpf, fpf->str);
+		fpf_cat_str_len(fpf, fpf->str, len);
 	if (fpf->width)
 	{
 		if (fpf->f[F_ZERO] && !fpf->f[F_MINUS])
-			fpf_charncat(fpf, fpf->width - len, '0');
+			fpf_cat_char_len(fpf, fpf->width - len, '0');
 		else
-			fpf_charncat(fpf, fpf->width - len, ' ');
+			fpf_cat_char_len(fpf, fpf->width - len, ' ');
 	}
 	if (print)
-		fpf_cat_str(fpf, fpf->str);
+		fpf_cat_str_len(fpf, fpf->str, len);
 }
 
-void		ft_output_s_modul(t_printf *fpf)
+void		ft_output_s(t_printf *fpf)
 {
 	int	len;
 	int	print;

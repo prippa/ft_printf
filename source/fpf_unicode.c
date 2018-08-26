@@ -81,7 +81,7 @@ char			*ft_wstr_to_str(wchar_t *ws)
 	len = ft_wbytelen(ws);
 	if (!(new_obj = (char *)malloc(sizeof(char) * len + 1)))
 		fpf_malloc_error_exit();
-	new_obj[len] = '\0';
+	new_obj[len] = 0;
 	len = 0;
 	while (*ws)
 		len = ft_pull_wchar(*ws++, new_obj, len);

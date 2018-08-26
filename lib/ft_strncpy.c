@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fpf_exit.c                                         :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/25 18:14:36 by prippa            #+#    #+#             */
-/*   Updated: 2018/08/25 18:14:38 by prippa           ###   ########.fr       */
+/*   Created: 2017/10/30 19:18:01 by prippa            #+#    #+#             */
+/*   Updated: 2017/10/30 19:18:03 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	fpf_init_random_char(t_printf *fpf)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	if (!(fpf->str = (char *)malloc(sizeof(char) * 2)))
-		fpf_malloc_error_exit();
-	fpf->str[0] = *fpf->format;
-	fpf->str[1] = 0;
-	fpf->type = 'c';
-	++fpf->format;
-}
+	char *tmp;
+	char c;
 
-void	fpf_malloc_error_exit(void)
-{
-	write(2, "ERROR: malloc failed", 20);
-	exit(-1);
+	tmp = dst;
+	c = 0;
+	while (len)
+	{
+		if (!(*tmp++ = *src++))
+		{
+			while (--len)
+				*tmp++ = c;
+			return (dst);
+		}
+		--len;
+	}
+	return (dst);
 }

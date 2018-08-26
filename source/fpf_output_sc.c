@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_s.c                                :+:      :+:    :+:   */
+/*   fpf_output_s.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,30 +12,30 @@
 
 #include "ft_printf.h"
 
-static void	ft_rules(t_printf *fpf, int len, int print)
+static void	fpf_rules(t_printf *fpf, int len)
 {
-	if (!ft_strlen(fpf->str))
+	if (fpf->f[F_MINUS])
 	{
-		len = 0;
-		print = 0;
-	}
-	if (print && fpf->f[F_MINUS] && !(print = 0))
 		fpf_cat_str_len(fpf, fpf->str, len);
-	if (fpf->width)
-	{
-		if (fpf->f[F_ZERO] && !fpf->f[F_MINUS])
-			fpf_cat_char_len(fpf, fpf->width - len, '0');
-		else
+		if (fpf->width)
 			fpf_cat_char_len(fpf, fpf->width - len, ' ');
 	}
-	if (print)
+	else
+	{
+		if (fpf->width)
+		{
+			if (fpf->f[F_ZERO])
+				fpf_cat_char_len(fpf, fpf->width - len, '0');
+			else
+				fpf_cat_char_len(fpf, fpf->width - len, ' ');
+		}
 		fpf_cat_str_len(fpf, fpf->str, len);
+	}
 }
 
-void		ft_output_s(t_printf *fpf)
+void		fpf_output_s(t_printf *fpf)
 {
 	int	len;
-	int	print;
 
 	len = ft_strlen(fpf->str);
 	if (fpf->precision < 0)
@@ -51,7 +51,31 @@ void		ft_output_s(t_printf *fpf)
 			len = fpf->precision;
 	}
 	else if (fpf->f[F_DOT])
-		len = fpf->precision;
-	print = 1;
-	ft_rules(fpf, len, print);
+		len = 0;
+	fpf_rules(fpf, len);
+}
+
+void		fpf_output_c(t_printf *fpf)
+{
+	int len;
+
+	if (!(len = ft_strlen(fpf->str)))
+		++len;
+	if (fpf->f[F_MINUS])
+	{
+		fpf_cat_str_len(fpf, fpf->str, len);
+		if (fpf->width)
+			fpf_cat_char_len(fpf, fpf->width - len, ' ');
+	}
+	else
+	{
+		if (fpf->width)
+		{
+			if (fpf->f[F_ZERO])
+				fpf_cat_char_len(fpf, fpf->width - len, '0');
+			else
+				fpf_cat_char_len(fpf, fpf->width - len, ' ');
+		}
+		fpf_cat_str_len(fpf, fpf->str, len);
+	}
 }

@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include <wchar.h>
 
-# define FPF_BUF_SIZE 512
+# define FPF_BUF_SIZE 1024
 
 typedef enum	s_size_flags
 {
@@ -48,7 +48,7 @@ typedef struct	s_printf
 	char		*str;
 	int			fd;
 	char		buf[FPF_BUF_SIZE + 1];
-	size_t		buflen;
+	int			buflen;
 	char		f[FLAG_SIZE];
 	int			color;
 	int			width;
@@ -122,20 +122,20 @@ int						ft_dprintf(int fd, const char *format, ...);
 void					fpf_cat_char(t_printf *fpf, char c);
 void					fpf_cat_str(t_printf *fpf, const char *src);
 void					fpf_cat_char_len(t_printf *fpf, int n, char c);
-void					fpf_cat_str_len(t_printf *fpf, const char *src, size_t len);
+void					fpf_cat_str_len(t_printf *fpf, const char *src, int len);
 void					fpf_parser(t_printf *fpf);
-signed long long int	ft_conv_sig_int(t_printf *fpf);
-unsigned long long int	ft_conv_unsig_int(t_printf *fpf);
+signed long long int	fpf_conv_sig_int(t_printf *fpf);
+unsigned long long int	fpf_conv_unsig_int(t_printf *fpf);
 void					fpf_malloc_error_exit(void);
 void					fpf_get_type(t_printf *fpf);
-char					*ft_wstr_to_str(wchar_t *ws);
+char					*fpf_wstr_to_str(wchar_t *ws);
 void					fpf_init_random_char(t_printf *fpf);
-void					ft_output_c(t_printf *fpf);
-void					ft_output_d(t_printf *fpf);
-void					ft_output_ox(t_printf *fpf);
-void					ft_output_p(t_printf *fpf);
-void					ft_output_s(t_printf *fpf);
-void					ft_output_u(t_printf *fpf);
+void					fpf_output_c(t_printf *fpf);
+void					fpf_output_d(t_printf *fpf);
+void					fpf_output_ox(t_printf *fpf);
+void					fpf_output_p(t_printf *fpf);
+void					fpf_output_s(t_printf *fpf);
+void					fpf_output_u(t_printf *fpf);
 void					fpf_set_color(t_printf *fpf);
 
 #endif

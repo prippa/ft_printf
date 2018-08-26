@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_ox.c                               :+:      :+:    :+:   */
+/*   fpf_output_ox.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void		ft_percision_tricks(t_printf *fpf, int *len)
+static void		fpf_percision_tricks(t_printf *fpf, int *len)
 {
 	if (fpf->f[F_DOT] && !fpf->precision && fpf->str[0] == '0'
 		&& !fpf->f[F_SHARP])
@@ -25,7 +25,7 @@ static void		ft_percision_tricks(t_printf *fpf, int *len)
 		fpf->f[F_SHARP] = '\0';
 }
 
-static int		ft_write_sharp(t_printf *fpf)
+static int		fpf_write_sharp(t_printf *fpf)
 {
 	if (fpf->type == 'x')
 	{
@@ -45,7 +45,7 @@ static int		ft_write_sharp(t_printf *fpf)
 	return (0);
 }
 
-static void		ft_base_ox_logic(t_printf *fpf, int len)
+static void		fpf_base_ox_logic(t_printf *fpf, int len)
 {
 	if (fpf->width && fpf->f[F_SHARP] && fpf->type != 'o'
 		&& fpf->type != 'O')
@@ -58,7 +58,7 @@ static void		ft_base_ox_logic(t_printf *fpf, int len)
 		if (fpf->f[F_ZERO] && !fpf->precision)
 		{
 			if (fpf->f[F_SHARP])
-				ft_write_sharp(fpf);
+				fpf_write_sharp(fpf);
 			fpf_cat_char_len(fpf, fpf->width - len, '0');
 		}
 		else
@@ -66,24 +66,24 @@ static void		ft_base_ox_logic(t_printf *fpf, int len)
 	}
 	if (fpf->f[F_SHARP] && fpf->str[0] != '0'
 		&& (!fpf->f[F_ZERO] || !fpf->width))
-		ft_write_sharp(fpf);
+		fpf_write_sharp(fpf);
 	if (fpf->precision)
 		fpf_cat_char_len(fpf, fpf->precision - len, '0');
 	fpf_cat_str_len(fpf, fpf->str, len);
 }
 
-void			ft_output_ox(t_printf *fpf)
+void			fpf_output_ox(t_printf *fpf)
 {
 	int	len;
 	int	size;
 
 	len = ft_strlen(fpf->str);
-	ft_percision_tricks(fpf, &len);
+	fpf_percision_tricks(fpf, &len);
 	size = 0;
 	if (fpf->f[F_MINUS])
 	{
 		if (fpf->f[F_SHARP] && len)
-			size += ft_write_sharp(fpf);
+			size += fpf_write_sharp(fpf);
 		if (fpf->precision)
 			fpf_cat_char_len(fpf, fpf->precision - len, '0');
 		fpf_cat_str_len(fpf, fpf->str, len);
@@ -92,5 +92,5 @@ void			ft_output_ox(t_printf *fpf)
 			fpf->width - MAX(len, fpf->precision) - size, ' ');
 	}
 	else
-		ft_base_ox_logic(fpf, len);
+		fpf_base_ox_logic(fpf, len);
 }

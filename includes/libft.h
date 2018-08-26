@@ -26,9 +26,9 @@ size_t			ft_strlen(const char *s);
 void			ft_bzero(void *s, size_t n);
 char			*ft_itoa_max(long long int n);
 char			*ft_itoa_base(unsigned long long int num, int base, int letter);
-short			ft_nbrlen(long long int nb);
 int				ft_isdigit(int c);
 int				ft_isascii(int c);
 void			ft_strdel(char **as);
+short			ft_nbrlen(long long int nb);
 
 #endif

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int		ft_wcharlen(wchar_t wc)
+static int		fpf_wcharlen(wchar_t wc)
 {
 	if (wc <= 0x7f)
 		return (1);
@@ -21,7 +21,7 @@ static int		ft_wcharlen(wchar_t wc)
 	return (3);
 }
 
-static size_t	ft_wstrlen(wchar_t *ws)
+static size_t	fpf_wstrlen(wchar_t *ws)
 {
 	size_t	len;
 
@@ -33,23 +33,23 @@ static size_t	ft_wstrlen(wchar_t *ws)
 	return (len);
 }
 
-static size_t	ft_wbytelen(wchar_t *ws)
+static size_t	fpf_wbytelen(wchar_t *ws)
 {
 	size_t	byte_len;
 	size_t	len;
 
 	byte_len = 0;
-	len = ft_wstrlen(ws);
+	len = fpf_wstrlen(ws);
 	while (len--)
-		byte_len += ft_wcharlen(*ws++);
+		byte_len += fpf_wcharlen(*ws++);
 	return (byte_len);
 }
 
-static int		ft_pull_wchar(wchar_t wc, char *new_obj, int i)
+static int		fpf_pull_wchar(wchar_t wc, char *new_obj, int i)
 {
 	int		size;
 
-	size = ft_wcharlen(wc);
+	size = fpf_wcharlen(wc);
 	if (size == 1)
 		new_obj[i++] = wc;
 	else if (size == 2)
@@ -73,17 +73,17 @@ static int		ft_pull_wchar(wchar_t wc, char *new_obj, int i)
 	return (i);
 }
 
-char			*ft_wstr_to_str(wchar_t *ws)
+char			*fpf_wstr_to_str(wchar_t *ws)
 {
 	char	*new_obj;
 	int		len;
 
-	len = ft_wbytelen(ws);
+	len = fpf_wbytelen(ws);
 	if (!(new_obj = (char *)malloc(sizeof(char) * len + 1)))
 		fpf_malloc_error_exit();
 	new_obj[len] = 0;
 	len = 0;
 	while (*ws)
-		len = ft_pull_wchar(*ws++, new_obj, len);
+		len = fpf_pull_wchar(*ws++, new_obj, len);
 	return (new_obj);
 }

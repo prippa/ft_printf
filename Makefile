@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME		=	libftprintf.a
-# FLAGS		=	-Wall -Werror -Wextra
+FLAGS		=	-Wall -Werror -Wextra
 COMPILER	=	gcc -g
 
 DIR_INC		=	./includes/
@@ -26,9 +26,8 @@ HEAD_LIB	=	libft.h
 #-------------------------- FPF Source files -----------------------------------
 SRC_FPF		=	ft_printf.c fpf_cat_data.c fpf_parser.c fpf_trash.c\
 				fpf_parser_get_type.c fpf_conversions.c fpf_unicode.c\
-				fpf_output_c.c fpf_output_s.c fpf_output_d.c\
-				fpf_output_u.c fpf_output_ox.c fpf_output_p.c\
-				fpf_colors.c
+				fpf_output_sc.c fpf_output_d.c fpf_output_u.c\
+				fpf_output_ox.c fpf_output_p.c fpf_colors.c
 
 
 #-------------------------- LIB Source files -----------------------------------

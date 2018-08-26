@@ -31,7 +31,7 @@ void	fpf_cat_char(t_printf *fpf, char c)
 	++fpf->buflen;
 }
 
-void	fpf_cat_str_len(t_printf *fpf, const char *src, size_t len)
+void	fpf_cat_str_len(t_printf *fpf, const char *src, int len)
 {
 	if (len > FPF_BUF_SIZE)
 	{
@@ -49,7 +49,7 @@ void	fpf_cat_str_len(t_printf *fpf, const char *src, size_t len)
 
 void	fpf_cat_str(t_printf *fpf, const char *src)
 {
-	size_t srclen;
+	int srclen;
 
 	srclen = ft_strlen(src);
 	if (srclen > FPF_BUF_SIZE)

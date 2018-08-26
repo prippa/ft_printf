@@ -17,23 +17,23 @@ static char	*ft_get_oux(t_printf *fpf)
 	char	*str;
 
 	if (*fpf->format == 'o')
-		str = ft_itoa_base(ft_conv_unsig_int(fpf), 8, 0);
+		str = ft_itoa_base(fpf_conv_unsig_int(fpf), 8, 0);
 	else if (*fpf->format == 'O')
 	{
 		fpf->size_flag = SF_L;
-		str = ft_itoa_base(ft_conv_unsig_int(fpf), 8, 0);
+		str = ft_itoa_base(fpf_conv_unsig_int(fpf), 8, 0);
 	}
 	else if (*fpf->format == 'u')
-		str = ft_itoa_base(ft_conv_unsig_int(fpf), 10, 0);
+		str = ft_itoa_base(fpf_conv_unsig_int(fpf), 10, 0);
 	else if (*fpf->format == 'U')
 	{
 		fpf->size_flag = SF_L;
-		str = ft_itoa_base(ft_conv_unsig_int(fpf), 10, 0);
+		str = ft_itoa_base(fpf_conv_unsig_int(fpf), 10, 0);
 	}
 	else if (*fpf->format == 'x')
-		str = ft_itoa_base(ft_conv_unsig_int(fpf), 16, 87);
+		str = ft_itoa_base(fpf_conv_unsig_int(fpf), 16, 87);
 	else
-		str = ft_itoa_base(ft_conv_unsig_int(fpf), 16, 55);
+		str = ft_itoa_base(fpf_conv_unsig_int(fpf), 16, 55);
 	return (str);
 }
 
@@ -46,7 +46,7 @@ static char	*ft_get_s(t_printf *fpf)
 	if (!data)
 		str = ft_strdup("(null)");
 	else if (*fpf->format == 'S' || fpf->size_flag == SF_L)
-		str = ft_wstr_to_str((wchar_t *)data);
+		str = fpf_wstr_to_str((wchar_t *)data);
 	else
 		str = ft_strdup((char *)data);
 	return (str);
@@ -57,11 +57,11 @@ static char	*ft_get_di(t_printf *fpf)
 	char	*str;
 
 	if (*fpf->format == 'd' || *fpf->format == 'i')
-		str = ft_itoa_max(ft_conv_sig_int(fpf));
+		str = ft_itoa_max(fpf_conv_sig_int(fpf));
 	else
 	{
 		fpf->size_flag = SF_L;
-		str = ft_itoa_max(ft_conv_sig_int(fpf));
+		str = ft_itoa_max(fpf_conv_sig_int(fpf));
 	}
 	return (str);
 }
@@ -75,7 +75,7 @@ char	*ft_get_c(t_printf *fpf)
 	{
 		tmp[0] = (wchar_t)va_arg(fpf->args, int);
 		tmp[1] = 0;
-		str = ft_wstr_to_str(tmp);
+		str = fpf_wstr_to_str(tmp);
 	}
 	else
 	{

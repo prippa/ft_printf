@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-signed long long int	ft_conv_sig_int(t_printf *fpf)
+signed long long int	fpf_conv_sig_int(t_printf *fpf)
 {
 	signed long long int num;
 
@@ -33,7 +33,7 @@ signed long long int	ft_conv_sig_int(t_printf *fpf)
 	return (num);
 }
 
-unsigned long long int	ft_conv_unsig_int(t_printf *fpf)
+unsigned long long int	fpf_conv_unsig_int(t_printf *fpf)
 {
 	unsigned long long int num;
 

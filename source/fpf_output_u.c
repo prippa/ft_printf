@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_u.c                                :+:      :+:    :+:   */
+/*   fpf_output_u.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	ft_base_u_logic(t_printf *fpf, int len)
+static void	fpf_base_u_logic(t_printf *fpf, int len)
 {
 	if (fpf->width)
 	{
@@ -26,7 +26,7 @@ static void	ft_base_u_logic(t_printf *fpf, int len)
 	fpf_cat_str_len(fpf, fpf->str, len);
 }
 
-void		ft_output_u(t_printf *fpf)
+void		fpf_output_u(t_printf *fpf)
 {
 	int	len;
 
@@ -42,5 +42,5 @@ void		ft_output_u(t_printf *fpf)
 			fpf_cat_char_len(fpf, fpf->width - MAX(len, fpf->precision), ' ');
 	}
 	else
-		ft_base_u_logic(fpf, len);
+		fpf_base_u_logic(fpf, len);
 }

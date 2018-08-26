@@ -19,7 +19,7 @@
 
 # define FPF_BUF_SIZE 1024
 
-typedef enum	s_size_flags
+typedef enum	e_fpf_size_flags
 {
 	SF_H = 1,
 	SF_HH,
@@ -27,9 +27,9 @@ typedef enum	s_size_flags
 	SF_LL,
 	SF_J,
 	SF_Z
-}				t_size_flags;
+}				t_fpf_size_flags;
 
-typedef enum	s_flags
+typedef enum	e_fpf_flags
 {
 	F_MINUS,
 	F_PLUS,
@@ -39,7 +39,7 @@ typedef enum	s_flags
 	F_DOT,
 	F_COLOR,
 	FLAG_SIZE
-}				t_flags;
+}				t_fpf_flags;
 
 typedef struct	s_printf
 {
@@ -88,7 +88,7 @@ typedef struct	s_printf
 # define BACK_BLUE_WHITE	"\e[1;97;44m"
 # define BACK_CYAN_WHITE	"\e[1;97;46m"
 
-typedef enum	e_colors
+typedef enum	e_fpf_colors
 {
 	F_GREEN = 1,
 	F_BLUE,
@@ -115,7 +115,7 @@ typedef enum	e_colors
 	F_BACK_BLUE_WHITE,
 	F_BACK_RED_WHITE,
 	F_BACK_CYAN_WHITE
-}				t_colors;
+}				t_fpf_colors;
 
 int						ft_printf(const char *format, ...);
 int						ft_dprintf(int fd, const char *format, ...);

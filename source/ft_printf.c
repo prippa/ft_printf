@@ -16,12 +16,12 @@ static void	fpf_dispatcher(t_printf *fpf)
 {
 	if (fpf->f[F_COLOR])
 		fpf_set_color(fpf);
-	if (fpf->type == 'c' || fpf->type == 'C')
-		fpf_output_c(fpf);
-	else if (fpf->type == 's' || fpf->type == 'S')
+	if (fpf->type == 's' || fpf->type == 'S')
 		fpf_output_s(fpf);
 	else if (fpf->type == 'd' || fpf->type == 'i' || fpf->type == 'D')
 		fpf_output_d(fpf);
+	else if (fpf->type == 'c' || fpf->type == 'C')
+		fpf_output_c(fpf);
 	else if (fpf->type == 'u' || fpf->type == 'U')
 		fpf_output_u(fpf);
 	else if (fpf->type == 'o' || fpf->type == 'O'
@@ -44,8 +44,10 @@ static void	fpf_handle_type(t_printf *fpf)
 	ft_bzero(fpf->f, FLAG_SIZE);
 	fpf_parser(fpf);
 	if (fpf->str)
+	{
 		fpf_dispatcher(fpf);
-	ft_strdel(&fpf->str);
+		free(fpf->str);
+	}
 }
 
 static void	fpf_lobi(t_printf *fpf)

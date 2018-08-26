@@ -12,7 +12,7 @@
 
 NAME		=	libftprintf.a
 FLAGS		=	-Wall -Werror -Wextra
-COMPILER	=	gcc -g
+COMPILER	=	gcc
 
 DIR_INC		=	./includes/
 DIR_SRC		=	./source/
@@ -32,8 +32,7 @@ SRC_FPF		=	ft_printf.c fpf_cat_data.c fpf_parser.c fpf_trash.c\
 
 #-------------------------- LIB Source files -----------------------------------
 SRC_LIB		=	ft_strcpy.c ft_strlen.c ft_strdup.c ft_nbrlen.c\
-				ft_isdigit.c ft_bzero.c ft_isascii.c ft_itoa.c\
-				ft_strncpy.c ft_strdel.c
+				ft_isdigit.c ft_bzero.c ft_itoa.c ft_strncpy.c
 
 INC_FPF 	= 	$(addprefix $(DIR_INC), $(HEAD_FPF))
 INC_LIB 	= 	$(addprefix $(DIR_INC), $(HEAD_LIB))

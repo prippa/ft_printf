@@ -66,7 +66,7 @@ static char	*ft_get_di(t_printf *fpf)
 	return (str);
 }
 
-char	*ft_get_c(t_printf *fpf)
+char		*ft_get_c(t_printf *fpf)
 {
 	char	*str;
 	wchar_t	tmp[2];

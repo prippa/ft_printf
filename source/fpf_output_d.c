@@ -82,7 +82,8 @@ static void		fpf_logic_d_with_minus(t_printf *fpf, int len)
 		fpf_cat_char_len(fpf, fpf->precision - len, '0');
 	fpf_print_d(fpf, len, ft_strlen(fpf->str));
 	if (fpf->width)
-		fpf_cat_char_len(fpf, fpf->width - MAX(len, fpf->precision) - size, ' ');
+		fpf_cat_char_len(fpf,
+			fpf->width - MAX(len, fpf->precision) - size, ' ');
 }
 
 void			fpf_output_d(t_printf *fpf)

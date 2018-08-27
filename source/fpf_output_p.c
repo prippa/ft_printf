@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fpf_output_p.c                                :+:      :+:    :+:   */
+/*   fpf_output_p.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -50,7 +50,8 @@ void			fpf_output_p(t_printf *fpf)
 			fpf_cat_char_len(fpf, fpf->precision - len, '0');
 		fpf_cat_str_len(fpf, fpf->str, len);
 		if (fpf->width)
-			fpf_cat_char_len(fpf, fpf->width - MAX(len, fpf->precision) - 2, ' ');
+			fpf_cat_char_len(fpf,
+				fpf->width - MAX(len, fpf->precision) - 2, ' ');
 	}
 	else
 		fpf_base_p_logic(fpf, len);

@@ -70,7 +70,7 @@ static void	fpf_get_width(t_printf *fpf)
 	}
 	else
 		while (ft_isdigit(*fpf->format))
-				fpf->width = (fpf->width * 10) + (*fpf->format++ - '0');
+			fpf->width = (fpf->width * 10) + (*fpf->format++ - '0');
 }
 
 static void	fpf_get_flags(t_printf *fpf)

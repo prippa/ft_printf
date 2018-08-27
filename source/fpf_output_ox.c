@@ -22,7 +22,7 @@ static void		fpf_percision_tricks(t_printf *fpf, int *len)
 		*len = 0;
 	if (fpf->f[F_DOT] && fpf->precision
 		&& fpf->f[F_SHARP] && (fpf->type == 'o' || fpf->type == 'O'))
-		fpf->f[F_SHARP] = '\0';
+		fpf->f[F_SHARP] = 0;
 }
 
 static int		fpf_write_sharp(t_printf *fpf)

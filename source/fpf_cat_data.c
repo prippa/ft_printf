@@ -31,20 +31,20 @@ void	fpf_cat_char(t_printf *fpf, char c)
 	++fpf->buflen;
 }
 
-void	fpf_cat_str_len(t_printf *fpf, const char *src, int len)
+void	fpf_cat_str_len(t_printf *fpf, const char *src, int n)
 {
-	if (len > FPF_BUF_SIZE)
+	if (n > FPF_BUF_SIZE)
 	{
-		fpf->len += write(fpf->fd, src, len);
+		fpf->len += write(fpf->fd, src, n);
 		return ;
 	}
-	else if ((fpf->buflen + len) > FPF_BUF_SIZE)
+	else if ((fpf->buflen + n) > FPF_BUF_SIZE)
 	{
 		fpf->len += write(fpf->fd, fpf->buf, fpf->buflen);
 		fpf->buflen = 0;
 	}
-	ft_strncpy(&fpf->buf[fpf->buflen], src, len);
-	fpf->buflen += len;
+	ft_strncpy(&fpf->buf[fpf->buflen], src, n);
+	fpf->buflen += n;
 }
 
 void	fpf_cat_str(t_printf *fpf, const char *src)

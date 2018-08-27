@@ -77,7 +77,7 @@ int			ft_printf(const char *format, ...)
 	return (fpf.len);
 }
 
-int		ft_dprintf(int fd, const char *format, ...)
+int			ft_dprintf(int fd, const char *format, ...)
 {
 	t_printf fpf;
 
